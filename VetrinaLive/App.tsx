@@ -9,20 +9,14 @@
  */
 
 import React from 'react';
-import {View, Text} from 'react-native';
-import {colors, textVariants} from './themes/main';
+import {SafeAreaView} from 'react-native';
+import Access from './layouts/Access';
 
 const App = () => {
   return (
-    <View>
-      <Text
-        style={{
-          ...textVariants.title1.semibold,
-          color: colors.primary.default,
-        }}>
-        Welcome to Vetrina Live!
-      </Text>
-    </View>
+    <>
+      <Access />
+    </>
   );
 };
 
