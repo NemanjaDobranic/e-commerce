@@ -21,7 +21,7 @@ interface StyleProps {
 
 interface Props extends StyleProps {
   icon?: React.ReactElement;
-  onPress: () => void;
+  onPress?: () => void;
   children: string;
 }
 

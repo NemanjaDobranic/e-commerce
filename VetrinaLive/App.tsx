@@ -9,14 +9,14 @@
  */
 
 import React from 'react';
-import {SafeAreaView} from 'react-native';
-import Access from './layouts/Access';
+import {NavigationContainer} from '@react-navigation/native';
+import MainNavigation from './components/MainNavigation';
 
 const App = () => {
   return (
-    <>
-      <Access />
-    </>
+    <NavigationContainer>
+      <MainNavigation />
+    </NavigationContainer>
   );
 };
 

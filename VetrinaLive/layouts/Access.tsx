@@ -1,17 +1,33 @@
 import React from 'react';
-import {View, Text, StyleSheet, Dimensions, Linking} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  Linking,
+  TouchableOpacity,
+} from 'react-native';
 import Logo from '../assets/images/logo.svg';
 import Facebook from '../assets/images/facebook.svg';
 import Google from '../assets/images/google.svg';
+import Headphones from '../assets/images/headphones.svg';
 import {facebookSignupUrl, googleSignupUrl} from '../assets/urls';
 import {colors, spacing} from '../theme/main';
 import Divider from '../components/Divider';
 import Button from '../components/Button';
 import textVariants from '../theme/textVariants';
 
-const {height} = Dimensions.get('screen');
+const {height, width} = Dimensions.get('screen');
 
-const Access = () => {
+interface Props {
+  link: string;
+  url: string;
+  children: React.ReactElement;
+  navigation: any;
+}
+
+const Access: React.FC<Props> = ({children, link, url, navigation}) => {
+  console.log(link);
   const navigateToFacebook = () => {
     Linking.openURL(facebookSignupUrl);
   };
@@ -28,7 +44,7 @@ const Access = () => {
         Prova Vetrina Live gratuitamente per 7 giorni e apri il tuo negozio
         online in pochi minuti. Nessuna carta di credito richiesta.
       </Text>
-      <Text>Ovdje ide forma</Text>
+      {children}
       <Divider content={'OR'} marginVertical={spacing.l} />
       <Button
         style={styles.facebookBtn}
@@ -50,6 +66,24 @@ const Access = () => {
         icon={<Google />}
         gap={1.25 * spacing.m}>
         Sign up with Google
+      </Button>
+      <View style={styles.container}>
+        <Text style={styles.account}>Do you have an account?</Text>
+        <TouchableOpacity onPress={() => navigation.navigate(url)}>
+          <Text style={{...styles.account, color: colors.primary.default}}>
+            {link}
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <Button
+        style={styles.support}
+        borderColor={colors.green.primary}
+        borderRadius={1.25 * spacing.l}
+        textVariant={textVariants.button.large}
+        textColor={colors.primary.black}
+        icon={<Headphones />}
+        gap={1.25 * spacing.s}>
+        Support
       </Button>
     </View>
   );
@@ -82,6 +116,25 @@ const styles = StyleSheet.create({
   },
   facebookBtn: {
     marginBottom: spacing.l,
+  },
+  container: {
+    marginVertical: 4 * spacing.s,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  account: {
+    fontFamily: 'SourceSansPro-Regular',
+    color: colors.primary.black,
+    fontSize: 1.125 * spacing.m,
+    lineHeight: spacing.l,
+    textAlign: 'center',
+    marginRight: spacing.s / 2,
+  },
+  support: {
+    width: 0.36 * width,
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
 });
 
