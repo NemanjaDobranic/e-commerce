@@ -21,7 +21,7 @@ function RecoverPassword({navigation}: RecoverPasswordProps) {
       header="Forgot Password"
       content="Enter your email and you will receive an email to recover your password">
       <View>
-        <Input placeholder="Email" style={styles.input} />
+        <Input type="password" placeholder="Email" style={styles.input} />
         <Button
           style={styles.btn}
           borderColor={colors.primary.default}
@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
   },
   btn: {
     backgroundColor: colors.primary.default,
+    marginTop: spacing.s,
   },
 });
 

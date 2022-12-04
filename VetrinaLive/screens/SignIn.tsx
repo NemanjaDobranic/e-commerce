@@ -19,8 +19,16 @@ function SignIn({navigation}: SignInProps) {
       header="Welcome"
       content="Enter your email and password to access your account">
       <View>
-        <Input placeholder="Enter your email" style={styles.input} />
-        <Input placeholder="Enter your password" style={styles.input} />
+        <Input
+          placeholder="Enter your email"
+          type="emailAddress"
+          style={styles.input}
+        />
+        <Input
+          placeholder="Enter your password"
+          type="password"
+          style={styles.input}
+        />
         <Button
           style={styles.btn}
           borderColor={colors.primary.default}
@@ -40,6 +48,7 @@ const styles = StyleSheet.create({
   },
   btn: {
     backgroundColor: colors.primary.default,
+    marginTop: spacing.s,
   },
 });
 

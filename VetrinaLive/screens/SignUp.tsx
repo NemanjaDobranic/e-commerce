@@ -19,9 +19,13 @@ function SignUp({navigation}: SignUpProps) {
       header="Create your e-commerce"
       content="Prova Vetrina Live gratuitamente per 7 giorni e apri il tuo negozio online in pochi minuti. Nessuna carta di credito richiesta.">
       <View>
-        <Input placeholder="Name and Surname" style={styles.input} />
-        <Input placeholder="Email" style={styles.input} />
-        <Input placeholder="Password" style={styles.input} />
+        <Input
+          type="name"
+          placeholder="Name and Surname"
+          style={styles.input}
+        />
+        <Input type="emailAddress" placeholder="Email" style={styles.input} />
+        <Input type="password" placeholder="Password" style={styles.input} />
         <Button
           style={styles.btn}
           borderColor={colors.primary.default}
@@ -41,6 +45,7 @@ const styles = StyleSheet.create({
   },
   btn: {
     backgroundColor: colors.primary.default,
+    marginTop: spacing.s,
   },
 });
 
