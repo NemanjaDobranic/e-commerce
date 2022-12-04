@@ -1,10 +1,12 @@
 import React from 'react';
 import Access from '../layouts/Access';
 import Input from '../components/Input';
-import {spacing} from '../theme/main';
+import {colors, spacing} from '../theme/main';
 import {StyleSheet, View} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {DefaultNavigationProps} from '../components/MainNavigation';
+import textVariants from '../theme/textVariants';
+import Button from '../components/Button';
 
 type RecoverPasswordProps = NativeStackScreenProps<
   DefaultNavigationProps<'RecoverPassword'>
@@ -20,6 +22,14 @@ function RecoverPassword({navigation}: RecoverPasswordProps) {
       content="Enter your email and you will receive an email to recover your password">
       <View>
         <Input placeholder="Email" style={styles.input} />
+        <Button
+          style={styles.btn}
+          borderColor={colors.primary.default}
+          borderRadius={0.625 * spacing.s}
+          textVariant={textVariants.button.large}
+          textColor={colors.white}>
+          Recover
+        </Button>
       </View>
     </Access>
   );
@@ -28,6 +38,9 @@ function RecoverPassword({navigation}: RecoverPasswordProps) {
 const styles = StyleSheet.create({
   input: {
     marginBottom: spacing.m,
+  },
+  btn: {
+    backgroundColor: colors.primary.default,
   },
 });
 

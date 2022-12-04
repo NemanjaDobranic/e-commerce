@@ -4,7 +4,9 @@ import {StyleSheet, View} from 'react-native';
 import {DefaultNavigationProps} from '../components/MainNavigation';
 import Access from '../layouts/Access';
 import Input from '../components/Input';
-import {spacing} from '../theme/main';
+import {colors, spacing} from '../theme/main';
+import textVariants from '../theme/textVariants';
+import Button from '../components/Button';
 
 type SignUpProps = NativeStackScreenProps<DefaultNavigationProps<'SignUp'>>;
 
@@ -19,7 +21,15 @@ function SignUp({navigation}: SignUpProps) {
       <View>
         <Input placeholder="Name and Surname" style={styles.input} />
         <Input placeholder="Email" style={styles.input} />
-        <Input placeholder="Password" />
+        <Input placeholder="Password" style={styles.input} />
+        <Button
+          style={styles.btn}
+          borderColor={colors.primary.default}
+          borderRadius={0.625 * spacing.s}
+          textVariant={textVariants.button.large}
+          textColor={colors.white}>
+          Create your shop
+        </Button>
       </View>
     </Access>
   );
@@ -28,6 +38,9 @@ function SignUp({navigation}: SignUpProps) {
 const styles = StyleSheet.create({
   input: {
     marginBottom: spacing.m,
+  },
+  btn: {
+    backgroundColor: colors.primary.default,
   },
 });
 

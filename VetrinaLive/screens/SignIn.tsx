@@ -1,10 +1,12 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+import Button from '../components/Button';
 import Input from '../components/Input';
 import {DefaultNavigationProps} from '../components/MainNavigation';
 import Access from '../layouts/Access';
-import {spacing} from '../theme/main';
+import {colors, spacing} from '../theme/main';
+import textVariants from '../theme/textVariants';
 
 type SignInProps = NativeStackScreenProps<DefaultNavigationProps<'SignIn'>>;
 
@@ -18,7 +20,15 @@ function SignIn({navigation}: SignInProps) {
       content="Enter your email and password to access your account">
       <View>
         <Input placeholder="Enter your email" style={styles.input} />
-        <Input placeholder="Enter your password" />
+        <Input placeholder="Enter your password" style={styles.input} />
+        <Button
+          style={styles.btn}
+          borderColor={colors.primary.default}
+          borderRadius={0.625 * spacing.s}
+          textVariant={textVariants.button.large}
+          textColor={colors.white}>
+          Login
+        </Button>
       </View>
     </Access>
   );
@@ -27,6 +37,9 @@ function SignIn({navigation}: SignInProps) {
 const styles = StyleSheet.create({
   input: {
     marginBottom: spacing.m,
+  },
+  btn: {
+    backgroundColor: colors.primary.default,
   },
 });
 
