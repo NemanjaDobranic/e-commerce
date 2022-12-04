@@ -16,6 +16,7 @@ import {colors, spacing} from '../theme/main';
 import Divider from '../components/Divider';
 import Button from '../components/Button';
 import textVariants from '../theme/textVariants';
+import {NavigationProp} from '@react-navigation/native';
 
 const {height, width} = Dimensions.get('screen');
 
@@ -23,7 +24,7 @@ interface Props {
   link: string;
   screen: string;
   children: React.ReactElement;
-  navigation: any;
+  navigation: NavigationProp<any, any>;
 }
 
 const Access: React.FC<Props> = ({children, link, screen, navigation}) => {
