@@ -21,12 +21,12 @@ const {height, width} = Dimensions.get('screen');
 
 interface Props {
   link: string;
-  url: string;
+  screen: string;
   children: React.ReactElement;
   navigation: any;
 }
 
-const Access: React.FC<Props> = ({children, link, url, navigation}) => {
+const Access: React.FC<Props> = ({children, link, screen, navigation}) => {
   console.log(link);
   const navigateToFacebook = () => {
     Linking.openURL(facebookSignupUrl);
@@ -69,7 +69,7 @@ const Access: React.FC<Props> = ({children, link, url, navigation}) => {
       </Button>
       <View style={styles.container}>
         <Text style={styles.account}>Do you have an account?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate(url)}>
+        <TouchableOpacity onPress={() => navigation.navigate(screen)}>
           <Text style={{...styles.account, color: colors.primary.default}}>
             {link}
           </Text>

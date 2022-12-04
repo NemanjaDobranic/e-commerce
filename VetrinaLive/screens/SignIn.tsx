@@ -8,7 +8,7 @@ type SignInProps = NativeStackScreenProps<DefaultNavigationProps<'SignIn'>>;
 
 function SignIn({navigation}: SignInProps) {
   return (
-    <Access>
+    <Access link="Register now" screen="SignUp" navigation={navigation}>
       <View>
         <Text>SignIn</Text>
       </View>
