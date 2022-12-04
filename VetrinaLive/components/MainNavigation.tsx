@@ -1,27 +1,29 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Access from '../layouts/Access';
+import {
+  createNativeStackNavigator,
+  NativeStackScreenProps,
+} from '@react-navigation/native-stack';
 import SignUp from '../screens/SignUp';
 import SignIn from '../screens/SignIn';
 
-const Stack = createNativeStackNavigator();
+type RootStackParamList = {
+  SignUp: undefined;
+  SignIn: undefined;
+};
+
+export type DefaultNavigationProps<T extends keyof RootStackParamList> =
+  NativeStackScreenProps<RootStackParamList, T>;
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const screens = [
   {
-    name: 'Sign up',
-    component: ({navigation}) => (
-      <Access link="Sign in now" url="Sign in" navigation={navigation}>
-        <SignUp />
-      </Access>
-    ),
+    name: 'SignUp' as keyof RootStackParamList,
+    component: SignUp,
   },
   {
-    name: 'Sign in',
-    component: ({navigation}) => (
-      <Access link="Sign in now" url="Sign up" navigation={navigation}>
-        <SignIn />
-      </Access>
-    ),
+    name: 'SignIn' as keyof RootStackParamList,
+    component: SignIn,
   },
 ];
 
