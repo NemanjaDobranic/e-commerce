@@ -8,16 +8,26 @@ function validateInput(
     return 'This field is required!';
   }
 
-  switch (type) {
-    case 'name':
-      return 'This field is required!';
-    case 'password':
-      return 'This field is required!';
-    case 'emailAddress':
-      break;
+  if (type === 'emailAddress' && !validator.isEmail(text)) {
+    return 'Invalid email format!';
   }
 
-  return 'Undefined input type!';
+  if (type === 'name') {
+    if (!validator.isAlpha(text, 'it-IT', {ignore: ' '})) {
+      return 'Only letters are allowed!';
+    }
+  }
+
+  if (type === 'password') {
+    if (text.length < 6) {
+      return 'Password must contain at least 6 characters!';
+    }
+    if (text.length > 12) {
+      return 'Password must contain less than 12 characters!';
+    }
+  }
+
+  return '';
 }
 
 export default validateInput;

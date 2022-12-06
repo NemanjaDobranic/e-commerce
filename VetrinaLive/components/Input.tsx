@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
 import {
   ImageStyle,
@@ -19,6 +20,7 @@ interface Props {
   value?: string;
   type: 'name' | 'password' | 'emailAddress';
   onChange?: (e: NativeSyntheticEvent<TextInputChangeEventData>) => void;
+  isValid?: (isValid: boolean) => void;
 }
 
 const Input: React.FC<Props> = ({
@@ -27,19 +29,19 @@ const Input: React.FC<Props> = ({
   value,
   type,
   onChange,
+  isValid,
 }) => {
-  const {input, onBlur, onFocus} = styles(style);
-  const [text, setText] = useState<string>();
+  const {input, onBlur, onFocus, errorLabel} = styles(style);
   const [inputStyle, setInputStyle] = useState(input);
-  const [error, setError] = useState<string>();
+  const [error, setError] = useState<string>('');
 
   useEffect(() => {
     if (value) {
-      setText(value);
-      setError(validateInput(value, type));
+      const validationString = validateInput(value, type);
+      setError(validationString);
+      isValid && isValid(!!validationString);
     }
-    console.log('input', text);
-  }, [value, text, type]);
+  }, [value]);
 
   const handleOnFocus = () => {
     setInputStyle({...inputStyle, ...onFocus});
@@ -51,24 +53,20 @@ const Input: React.FC<Props> = ({
 
   const handleTextChange = (
     e: NativeSyntheticEvent<TextInputChangeEventData>,
-  ) => {
-    setText(e.nativeEvent.text);
-    onChange && onChange(e);
-  };
-
+  ) => onChange && onChange(e);
   return (
     <View>
       <TextInput
         style={inputStyle}
         textContentType={type}
         secureTextEntry={type === 'password'}
-        value={text}
+        value={value}
         placeholder={placeholder}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
         onChange={handleTextChange}
       />
-      {error && <Text>{error}</Text>}
+      {error && <Text style={errorLabel}>{error}</Text>}
     </View>
   );
 };
@@ -92,6 +90,11 @@ const styles = (style?: ViewStyle | TextStyle | ImageStyle) =>
     },
     onBlur: {
       borderColor: '#0a254052',
+    },
+    errorLabel: {
+      color: colors.strawberry,
+      marginTop: -spacing.s,
+      marginBottom: spacing.s,
     },
   });
 

@@ -1,5 +1,5 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import React, {useEffect, useReducer} from 'react';
+import React, {useReducer, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {DefaultNavigationProps} from '../components/MainNavigation';
 import Access from '../layouts/Access';
@@ -25,7 +25,6 @@ type Reducer = (prevState: State, action: Action) => State;
 
 function SignUp({navigation}: SignUpProps) {
   const reducer: Reducer = (state, action) => {
-    console.log('state', state);
     switch (action.type) {
       case 'setNameAndSurname':
         return {...state, nameAndSurname: action.payload};
@@ -44,7 +43,17 @@ function SignUp({navigation}: SignUpProps) {
     password: '',
   });
 
-  useEffect(() => {});
+  const [validInputs, setValidInputs] = useState({
+    email: false,
+    nameAndSurname: false,
+    password: false,
+  });
+
+  const handleSubmit = () => {
+    const validForm = Object.values(validInputs).every(input => input);
+    console.log('valid form', validForm);
+  };
+
   return (
     <Access
       link="Sign in now"
@@ -61,6 +70,9 @@ function SignUp({navigation}: SignUpProps) {
           onChange={({nativeEvent}) =>
             dispatch({payload: nativeEvent.text, type: 'setNameAndSurname'})
           }
+          isValid={isValid =>
+            setValidInputs({...validInputs, nameAndSurname: isValid})
+          }
         />
         <Input
           type="emailAddress"
@@ -70,6 +82,7 @@ function SignUp({navigation}: SignUpProps) {
           onChange={({nativeEvent}) =>
             dispatch({payload: nativeEvent.text, type: 'setEmail'})
           }
+          isValid={isValid => setValidInputs({...validInputs, email: isValid})}
         />
         <Input
           type="password"
@@ -79,8 +92,12 @@ function SignUp({navigation}: SignUpProps) {
           onChange={({nativeEvent}) =>
             dispatch({payload: nativeEvent.text, type: 'setPassword'})
           }
+          isValid={isValid =>
+            setValidInputs({...validInputs, password: isValid})
+          }
         />
         <Button
+          onPress={handleSubmit}
           style={styles.btn}
           borderColor={colors.primary.default}
           borderRadius={0.625 * spacing.s}
