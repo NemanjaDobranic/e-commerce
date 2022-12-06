@@ -38,7 +38,6 @@ const Access: React.FC<Props> = ({
   header,
   content,
 }) => {
-  console.log(link);
   const navigateToFacebook = () => {
     Linking.openURL(facebookSignupUrl);
   };

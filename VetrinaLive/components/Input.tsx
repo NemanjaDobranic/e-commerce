@@ -7,6 +7,8 @@ import {
   ViewStyle,
   View,
   Text,
+  NativeSyntheticEvent,
+  TextInputChangeEventData,
 } from 'react-native';
 import {colors, spacing} from '../theme/main';
 import validateInput from '../helpers/validateInput';
@@ -16,9 +18,16 @@ interface Props {
   placeholder?: string;
   value?: string;
   type: 'name' | 'password' | 'emailAddress';
+  onChange?: (e: NativeSyntheticEvent<TextInputChangeEventData>) => void;
 }
 
-const Input: React.FC<Props> = ({placeholder, style, value, type}) => {
+const Input: React.FC<Props> = ({
+  placeholder,
+  style,
+  value,
+  type,
+  onChange,
+}) => {
   const {input, onBlur, onFocus} = styles(style);
   const [text, setText] = useState<string>();
   const [inputStyle, setInputStyle] = useState(input);
@@ -29,8 +38,8 @@ const Input: React.FC<Props> = ({placeholder, style, value, type}) => {
       setText(value);
       setError(validateInput(value, type));
     }
-    console.log(text);
-  }, [text, type, value]);
+    console.log('input', text);
+  }, [value, text, type]);
 
   const handleOnFocus = () => {
     setInputStyle({...inputStyle, ...onFocus});
@@ -38,6 +47,13 @@ const Input: React.FC<Props> = ({placeholder, style, value, type}) => {
 
   const handleOnBlur = () => {
     setInputStyle({...inputStyle, ...onBlur});
+  };
+
+  const handleTextChange = (
+    e: NativeSyntheticEvent<TextInputChangeEventData>,
+  ) => {
+    setText(e.nativeEvent.text);
+    onChange && onChange(e);
   };
 
   return (
@@ -50,6 +66,7 @@ const Input: React.FC<Props> = ({placeholder, style, value, type}) => {
         placeholder={placeholder}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
+        onChange={handleTextChange}
       />
       {error && <Text>{error}</Text>}
     </View>
