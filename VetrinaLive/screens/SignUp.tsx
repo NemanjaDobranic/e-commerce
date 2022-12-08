@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React, {useReducer, useState, useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
@@ -7,6 +8,8 @@ import Input from '../components/Input';
 import {colors, spacing} from '../theme/main';
 import textVariants from '../theme/textVariants';
 import Button from '../components/Button';
+import useApi from '../hooks/useApi';
+import {createAccount} from '../services/access';
 
 type SignUpProps = NativeStackScreenProps<DefaultNavigationProps<'SignUp'>>;
 
@@ -42,18 +45,26 @@ function SignUp({navigation}: SignUpProps) {
     nameAndSurname: '',
     password: '',
   });
-
   const [validInputs, setValidInputs] = useState({
     email: false,
     nameAndSurname: false,
     password: false,
   });
-
   const [validFrom, setValidForm] = useState(false);
   const [dirty, setDirty] = useState(false);
+  const [{loading, response, error}, executeApiCall] = useApi();
 
   useEffect(() => {
-    console.log('is dirty', dirty);
+    console.log(loading, response, error);
+  }, [loading, response, error]);
+
+  useEffect(() => {
+    if (validFrom) {
+      const names = formData.nameAndSurname.split(' ');
+      executeApiCall(
+        createAccount(names[0], names[1], formData.email, formData.password),
+      );
+    }
   }, [validFrom, dirty]);
 
   const handleSubmit = () => {
