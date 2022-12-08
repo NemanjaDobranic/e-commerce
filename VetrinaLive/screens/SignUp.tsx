@@ -1,5 +1,5 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import React, {useReducer, useState} from 'react';
+import React, {useReducer, useState, useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {DefaultNavigationProps} from '../components/MainNavigation';
 import Access from '../layouts/Access';
@@ -23,20 +23,20 @@ interface Action {
 
 type Reducer = (prevState: State, action: Action) => State;
 
-function SignUp({navigation}: SignUpProps) {
-  const reducer: Reducer = (state, action) => {
-    switch (action.type) {
-      case 'setNameAndSurname':
-        return {...state, nameAndSurname: action.payload};
-      case 'setEmail':
-        return {...state, email: action.payload};
-      case 'setPassword':
-        return {...state, password: action.payload};
-      default:
-        return state;
-    }
-  };
+const reducer: Reducer = (state, action) => {
+  switch (action.type) {
+    case 'setNameAndSurname':
+      return {...state, nameAndSurname: action.payload};
+    case 'setEmail':
+      return {...state, email: action.payload};
+    case 'setPassword':
+      return {...state, password: action.payload};
+    default:
+      return state;
+  }
+};
 
+function SignUp({navigation}: SignUpProps) {
   const [formData, dispatch] = useReducer<Reducer>(reducer, {
     email: '',
     nameAndSurname: '',
@@ -49,9 +49,17 @@ function SignUp({navigation}: SignUpProps) {
     password: false,
   });
 
+  const [validFrom, setValidForm] = useState(false);
+  const [dirty, setDirty] = useState(false);
+
+  useEffect(() => {
+    console.log('is dirty', dirty);
+  }, [validFrom, dirty]);
+
   const handleSubmit = () => {
     const validForm = Object.values(validInputs).every(input => input);
-    console.log('valid form', validForm);
+    setDirty(true);
+    setValidForm(validForm);
   };
 
   return (
@@ -73,6 +81,7 @@ function SignUp({navigation}: SignUpProps) {
           isValid={isValid =>
             setValidInputs({...validInputs, nameAndSurname: isValid})
           }
+          dirty={dirty}
         />
         <Input
           type="emailAddress"
@@ -83,6 +92,7 @@ function SignUp({navigation}: SignUpProps) {
             dispatch({payload: nativeEvent.text, type: 'setEmail'})
           }
           isValid={isValid => setValidInputs({...validInputs, email: isValid})}
+          dirty={dirty}
         />
         <Input
           type="password"
@@ -95,6 +105,7 @@ function SignUp({navigation}: SignUpProps) {
           isValid={isValid =>
             setValidInputs({...validInputs, password: isValid})
           }
+          dirty={dirty}
         />
         <Button
           onPress={handleSubmit}

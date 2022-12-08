@@ -21,6 +21,7 @@ interface Props {
   type: 'name' | 'password' | 'emailAddress';
   onChange?: (e: NativeSyntheticEvent<TextInputChangeEventData>) => void;
   isValid?: (isValid: boolean) => void;
+  dirty?: boolean;
 }
 
 const Input: React.FC<Props> = ({
@@ -30,18 +31,21 @@ const Input: React.FC<Props> = ({
   type,
   onChange,
   isValid,
+  dirty,
 }) => {
   const {input, onBlur, onFocus, errorLabel} = styles(style);
   const [inputStyle, setInputStyle] = useState(input);
   const [error, setError] = useState<string>('');
+  const [touched, setTouched] = useState<boolean>(!!dirty);
 
   useEffect(() => {
-    if (value) {
-      const validationString = validateInput(value, type);
+    setTouched(!!(value && value.length > 0));
+    const validationString = validateInput(value as string, type);
+    isValid && isValid(!validationString.length);
+    if (touched || dirty) {
       setError(validationString);
-      isValid && isValid(!!validationString);
     }
-  }, [value]);
+  }, [value, dirty, touched]);
 
   const handleOnFocus = () => {
     setInputStyle({...inputStyle, ...onFocus});
@@ -94,7 +98,7 @@ const styles = (style?: ViewStyle | TextStyle | ImageStyle) =>
     errorLabel: {
       color: colors.strawberry,
       marginTop: -spacing.s,
-      marginBottom: spacing.s,
+      marginBottom: 1.5 * spacing.s,
     },
   });
 
