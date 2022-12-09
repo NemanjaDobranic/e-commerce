@@ -1,7 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React, {useReducer, useState, useEffect} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, ActivityIndicator} from 'react-native';
 import {DefaultNavigationProps} from '../components/MainNavigation';
 import Access from '../layouts/Access';
 import Input from '../components/Input';
@@ -10,6 +9,7 @@ import textVariants from '../theme/textVariants';
 import Button from '../components/Button';
 import useApi from '../hooks/useApi';
 import {createAccount} from '../services/access';
+import Alert, {AlertType} from '../components/Alert';
 
 type SignUpProps = NativeStackScreenProps<DefaultNavigationProps<'SignUp'>>;
 
@@ -50,27 +50,43 @@ function SignUp({navigation}: SignUpProps) {
     nameAndSurname: false,
     password: false,
   });
-  const [validFrom, setValidForm] = useState(false);
   const [dirty, setDirty] = useState(false);
   const [{loading, response, error}, executeApiCall] = useApi();
+  const [alert, setAlert] = useState({
+    show: false,
+    message: '',
+    type: AlertType.error,
+  });
 
   useEffect(() => {
-    console.log(loading, response, error);
-  }, [loading, response, error]);
+    if (response) {
+      setAlert({
+        show: true,
+        message: 'Success! Shop was created successfully.',
+        type: AlertType.success,
+      });
+    }
 
-  useEffect(() => {
-    if (validFrom) {
+    if (error) {
+      setAlert({
+        show: true,
+        message:
+          'Oops! Something went wrong. Make sure you are online and restart the App.',
+        type: AlertType.error,
+      });
+    }
+  }, [response, error]);
+
+  const handleSubmit = () => {
+    const validForm = Object.values(validInputs).every(input => input);
+    setDirty(true);
+    setAlert({...alert, show: false});
+    if (validForm) {
       const names = formData.nameAndSurname.split(' ');
       executeApiCall(
         createAccount(names[0], names[1], formData.email, formData.password),
       );
     }
-  }, [validFrom, dirty]);
-
-  const handleSubmit = () => {
-    const validForm = Object.values(validInputs).every(input => input);
-    setDirty(true);
-    setValidForm(validForm);
   };
 
   return (
@@ -118,15 +134,32 @@ function SignUp({navigation}: SignUpProps) {
           }
           dirty={dirty}
         />
-        <Button
-          onPress={handleSubmit}
-          style={styles.btn}
-          borderColor={colors.primary.default}
-          borderRadius={0.625 * spacing.s}
-          textVariant={textVariants.button.large}
-          textColor={colors.white}>
-          Create your shop
-        </Button>
+        {!loading ? (
+          !response ? (
+            <Button
+              onPress={handleSubmit}
+              style={styles.btn}
+              borderColor={colors.primary.default}
+              borderRadius={0.625 * spacing.s}
+              textVariant={textVariants.button.large}
+              textColor={colors.white}>
+              Create your shop
+            </Button>
+          ) : (
+            <></>
+          )
+        ) : (
+          <ActivityIndicator color={colors.primary.default} size="large" />
+        )}
+
+        {alert.show && (
+          <Alert
+            style={styles.alert}
+            message={alert.message}
+            type={alert.type}
+            close={() => setAlert({...alert, show: false})}
+          />
+        )}
       </View>
     </Access>
   );
@@ -139,6 +172,10 @@ const styles = StyleSheet.create({
   btn: {
     backgroundColor: colors.primary.default,
     marginTop: spacing.s,
+  },
+  alert: {
+    marginTop: spacing.l,
+    marginBottom: 0,
   },
 });
 

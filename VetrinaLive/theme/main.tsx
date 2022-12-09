@@ -21,6 +21,8 @@ export const colors = {
   cornflower: '#6979F8',
   strawberry: '#F33451',
   tyrianPurple: '#BE52F2',
+  sangria: '#5E1914',
+  coral: '#feb9b9',
 };
 
 export const spacing = {

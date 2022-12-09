@@ -32,7 +32,7 @@ const useApi = (
   {path, options}: IApiArgs = {path: undefined, options: undefined},
   executeOnMount = false,
 ): [IApi, (apiArgs: IApiArgs) => void] => {
-  const baseUrl = 'http://localhost:4000';
+  const baseUrl = 'http://192.168.1.4:3000';
   const initialState: IApi = {
     error: null,
     loading: false,

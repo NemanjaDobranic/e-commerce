@@ -6,6 +6,13 @@
       "surname": "Smith",
       "email": "thomas@mail.com",
       "password": "$2a$10$jA0XhDImCVpmOu4uJb6TPeEUIKZTeur1/2IV8lJ49L5RiyuX5PIIS"
+    },
+    {
+      "email": "jtwain@mail.com",
+      "password": "$2a$10$ZYK7mVaz2tx2Wk/YOoBTr.vh2G/mBazbI/x54zZ4bIgnm0qOJbeza",
+      "name": "John",
+      "surname": "Twain",
+      "id": 2
     }
   ]
 }
