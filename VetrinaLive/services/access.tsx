@@ -24,3 +24,20 @@ export const createAccount = (
     },
   };
 };
+
+export const login = (email: string, password: string) => {
+  return {
+    path: '/login',
+    options: {
+      method: POST,
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    },
+  };
+};
