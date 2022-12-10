@@ -3,9 +3,9 @@ import {
   createNativeStackNavigator,
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
-import SignUp from '../screens/SignUp';
-import SignIn from '../screens/SignIn';
-import RecoverPassword from '../screens/RecoverPassword';
+import SignUp from '../screens/access/SignUp';
+import SignIn from '../screens/access/SignIn';
+import RecoverPassword from '../screens/access/RecoverPassword';
 import VetrinaLiveRoot from './DrawerNavigation';
 
 export type RootStackParamList = {
@@ -20,33 +20,14 @@ export type DefaultNavigationProps<T extends keyof RootStackParamList> =
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const screens = [
-  {
-    name: 'SignUp' as keyof RootStackParamList,
-    component: SignUp,
-  },
-  {
-    name: 'SignIn' as keyof RootStackParamList,
-    component: SignIn,
-  },
-  {
-    name: 'RecoverPassword' as keyof RootStackParamList,
-    component: RecoverPassword,
-  },
-];
-
 class MainNavigation extends React.PureComponent {
   render() {
     return (
       <Stack.Navigator screenOptions={{headerShown: false}}>
-        {/* {screens.map(({name, component}) => (
-          <Stack.Screen name={name} component={component} key={name} />
-        ))} */}
-        <Stack.Screen
-          options={{}}
-          name="VetrinaLiveRoot"
-          component={VetrinaLiveRoot}
-        />
+        <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="SignIn" component={SignIn} />
+        <Stack.Screen name="RecoverPassword" component={RecoverPassword} />
+        <Stack.Screen name="VetrinaLiveRoot" component={VetrinaLiveRoot} />
       </Stack.Navigator>
     );
   }

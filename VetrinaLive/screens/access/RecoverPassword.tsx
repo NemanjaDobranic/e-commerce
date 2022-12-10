@@ -1,17 +1,12 @@
 import React, {useReducer, useState} from 'react';
-import Access from '../layouts/Access';
-import Input from '../components/Input';
-import {colors, spacing} from '../theme/main';
+import Access from '../../layouts/Access';
+import Input from '../../components/Input';
+import {colors, spacing} from '../../theme/main';
 import {StyleSheet, View} from 'react-native';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {DefaultNavigationProps} from '../components/MainNavigation';
-import textVariants from '../theme/textVariants';
-import Button from '../components/Button';
-import Alert, {AlertType} from '../components/Alert';
-
-type RecoverPasswordProps = NativeStackScreenProps<
-  DefaultNavigationProps<'RecoverPassword'>
->;
+import textVariants from '../../theme/textVariants';
+import Button from '../../components/Button';
+import Alert, {AlertType} from '../../components/Alert';
+import {DefaultNavigationProps} from '../../navigation/MainNavigation';
 
 interface State {
   email: string;
@@ -33,7 +28,9 @@ const reducer: Reducer = (state, action) => {
   }
 };
 
-function RecoverPassword({navigation}: RecoverPasswordProps) {
+function RecoverPassword({
+  navigation,
+}: DefaultNavigationProps<'RecoverPassword'>) {
   const [formData, dispatch] = useReducer<Reducer>(reducer, {
     email: '',
   });
@@ -57,6 +54,10 @@ function RecoverPassword({navigation}: RecoverPasswordProps) {
         type: AlertType.success,
         message: `Success! An email has been sent to ${formData.email}.\nPlease check your inbox and follow the instructions.`,
       });
+
+      setTimeout(() => {
+        navigation.navigate('SignIn');
+      }, 2000);
     }
   };
 

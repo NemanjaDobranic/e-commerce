@@ -1,17 +1,17 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useReducer, useState} from 'react';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
-import Alert, {AlertType} from '../components/Alert';
-import Button from '../components/Button';
-import Input from '../components/Input';
-import {DefaultNavigationProps} from '../components/MainNavigation';
-import useApi from '../hooks/useApi';
-import Access from '../layouts/Access';
-import {colors, spacing} from '../theme/main';
-import textVariants from '../theme/textVariants';
-import {login} from '../services/access';
-
-type SignInProps = NativeStackScreenProps<DefaultNavigationProps<'SignIn'>>;
+import Alert, {AlertType} from '../../components/Alert';
+import Button from '../../components/Button';
+import Input from '../../components/Input';
+import {DefaultNavigationProps} from '../../navigation/MainNavigation';
+import useApi from '../../hooks/useApi';
+import Access from '../../layouts/Access';
+import {colors, spacing} from '../../theme/main';
+import textVariants from '../../theme/textVariants';
+import {login} from '../../services/access';
+import {setUser} from '../../redux/index';
+import {useDispatch} from 'react-redux';
 
 interface State {
   email: string;
@@ -36,7 +36,7 @@ const reducer: Reducer = (state, action) => {
   }
 };
 
-function SignIn({navigation}: SignInProps) {
+function SignIn({navigation}: DefaultNavigationProps<'SignIn'>) {
   const [formData, dispatch] = useReducer<Reducer>(reducer, {
     email: '',
     password: '',
@@ -52,14 +52,12 @@ function SignIn({navigation}: SignInProps) {
     message: '',
     type: AlertType.error,
   });
+  const dispatchAction = useDispatch();
 
   useEffect(() => {
     if (response) {
-      setAlert({
-        show: true,
-        message: 'You are logged in. Do redirect on dashborad!',
-        type: AlertType.success,
-      });
+      dispatchAction(setUser(response.user));
+      navigation.navigate('VetrinaLiveRoot');
     }
 
     if (error) {

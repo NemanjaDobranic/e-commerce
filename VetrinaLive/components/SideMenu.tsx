@@ -9,12 +9,20 @@ import Logo from '../assets/images/logo.svg';
 
 const icons = [
   {
-    routeName: 'Home',
+    routeName: 'Dashboard',
     icon: 'home',
   },
   {
     routeName: 'Products',
     icon: 'shop',
+  },
+  {
+    routeName: 'Orders',
+    icon: 'shopping-cart',
+  },
+  {
+    routeName: 'Subsription',
+    icon: 'euro',
   },
 ];
 
@@ -48,7 +56,6 @@ const SideMenu: React.FC<DrawerContentComponentProps> = props => {
 
       <DrawerItem
         label="Logout"
-        style={styles.logout}
         labelStyle={styles.labelStyle}
         onPress={() => {}}
         inactiveTintColor={colors.white}
@@ -63,18 +70,17 @@ type Style = {
   root: ViewStyle;
   labelStyle: TextStyle;
   logo: ViewStyle;
-  logout: ViewStyle;
 };
 
 const styles = StyleSheet.create<Style>({
-  root: {backgroundColor: colors.primary.black},
+  root: {
+    backgroundColor: colors.primary.black,
+  },
   labelStyle: {...textVariants.title.title4},
   logo: {
     marginLeft: 'auto',
     marginRight: 'auto',
     marginVertical: spacing.l,
-  },
-  logout: {
   },
 });
 

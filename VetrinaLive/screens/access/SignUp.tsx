@@ -1,17 +1,14 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React, {useReducer, useState, useEffect} from 'react';
 import {StyleSheet, View, ActivityIndicator} from 'react-native';
-import {DefaultNavigationProps} from '../components/MainNavigation';
-import Access from '../layouts/Access';
-import Input from '../components/Input';
-import {colors, spacing} from '../theme/main';
-import textVariants from '../theme/textVariants';
-import Button from '../components/Button';
-import useApi from '../hooks/useApi';
-import {createAccount} from '../services/access';
-import Alert, {AlertType} from '../components/Alert';
-
-type SignUpProps = NativeStackScreenProps<DefaultNavigationProps<'SignUp'>>;
+import {DefaultNavigationProps} from '../../navigation/MainNavigation';
+import Access from '../../layouts/Access';
+import Input from '../../components/Input';
+import {colors, spacing} from '../../theme/main';
+import textVariants from '../../theme/textVariants';
+import Button from '../../components/Button';
+import useApi from '../../hooks/useApi';
+import {createAccount} from '../../services/access';
+import Alert, {AlertType} from '../../components/Alert';
 
 interface State {
   nameAndSurname: string;
@@ -39,7 +36,7 @@ const reducer: Reducer = (state, action) => {
   }
 };
 
-function SignUp({navigation}: SignUpProps) {
+function SignUp({navigation}: DefaultNavigationProps<'SignUp'>) {
   const [formData, dispatch] = useReducer<Reducer>(reducer, {
     email: '',
     nameAndSurname: '',

@@ -68,7 +68,6 @@ const useApi = (
       return response;
     } catch (e) {
       const typedErr = e as Error;
-      console.log(typedErr);
       throw new Error(typedErr.message);
     }
   }, [apiArgs.path, apiArgs.options]);
