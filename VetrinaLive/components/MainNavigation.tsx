@@ -6,11 +6,13 @@ import {
 import SignUp from '../screens/SignUp';
 import SignIn from '../screens/SignIn';
 import RecoverPassword from '../screens/RecoverPassword';
+import VetrinaLiveRoot from './DrawerNavigation';
 
 export type RootStackParamList = {
   SignUp: undefined;
   SignIn: undefined;
   RecoverPassword: undefined;
+  VetrinaLiveRoot: undefined;
 };
 
 export type DefaultNavigationProps<T extends keyof RootStackParamList> =
@@ -37,9 +39,14 @@ class MainNavigation extends React.PureComponent {
   render() {
     return (
       <Stack.Navigator screenOptions={{headerShown: false}}>
-        {screens.map(({name, component}) => (
+        {/* {screens.map(({name, component}) => (
           <Stack.Screen name={name} component={component} key={name} />
-        ))}
+        ))} */}
+        <Stack.Screen
+          options={{}}
+          name="VetrinaLiveRoot"
+          component={VetrinaLiveRoot}
+        />
       </Stack.Navigator>
     );
   }

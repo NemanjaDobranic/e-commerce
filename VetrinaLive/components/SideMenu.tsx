@@ -1,0 +1,81 @@
+import {DrawerContentComponentProps} from '@react-navigation/drawer';
+import React, {useState} from 'react';
+import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
+import {StyleSheet, TextStyle, ViewStyle} from 'react-native';
+import {colors, spacing} from '../theme/main';
+import textVariants from '../theme/textVariants';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import Logo from '../assets/images/logo.svg';
+
+const icons = [
+  {
+    routeName: 'Home',
+    icon: 'home',
+  },
+  {
+    routeName: 'Products',
+    icon: 'shop',
+  },
+];
+
+const SideMenu: React.FC<DrawerContentComponentProps> = props => {
+  const {state, navigation} = props;
+  const [focused, setFocused] = useState(state.routes[0].name);
+
+  const getIcon = (routeName: string) =>
+    icons.find(icon => icon.routeName === routeName)?.icon ?? 'device-unknown';
+
+  return (
+    <DrawerContentScrollView {...props} style={styles.root}>
+      <Logo style={styles.logo} />
+      {state.routes.map(route => (
+        <DrawerItem
+          label={route.name}
+          key={route.key}
+          onPress={() => {
+            navigation.navigate(route.name);
+            setFocused(route.name);
+          }}
+          inactiveTintColor={colors.white}
+          labelStyle={styles.labelStyle}
+          pressColor={colors.white}
+          activeTintColor={colors.primary.black}
+          activeBackgroundColor={colors.white}
+          focused={focused === route.name}
+          icon={iconProps => <Icon name={getIcon(route.name)} {...iconProps} />}
+        />
+      ))}
+
+      <DrawerItem
+        label="Logout"
+        style={styles.logout}
+        labelStyle={styles.labelStyle}
+        onPress={() => {}}
+        inactiveTintColor={colors.white}
+        pressColor={colors.white}
+        icon={iconProps => <Icon name="logout" {...iconProps} />}
+      />
+    </DrawerContentScrollView>
+  );
+};
+
+type Style = {
+  root: ViewStyle;
+  labelStyle: TextStyle;
+  logo: ViewStyle;
+  logout: ViewStyle;
+};
+
+const styles = StyleSheet.create<Style>({
+  root: {backgroundColor: colors.primary.black},
+  labelStyle: {...textVariants.title.title4},
+  logo: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginVertical: spacing.l,
+  },
+  logout: {
+  },
+});
+
+export default SideMenu;
