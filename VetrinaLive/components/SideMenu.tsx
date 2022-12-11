@@ -6,6 +6,7 @@ import {colors, spacing} from '../theme/main';
 import textVariants from '../theme/textVariants';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Logo from '../assets/images/logo.svg';
+import useAuth from '../hooks/useAuth';
 
 const icons = [
   {
@@ -29,7 +30,7 @@ const icons = [
 const SideMenu: React.FC<DrawerContentComponentProps> = props => {
   const {state, navigation} = props;
   const [focused, setFocused] = useState(state.routes[0].name);
-
+  const {signOut} = useAuth();
   const getIcon = (routeName: string) =>
     icons.find(icon => icon.routeName === routeName)?.icon ?? 'device-unknown';
 
@@ -41,8 +42,8 @@ const SideMenu: React.FC<DrawerContentComponentProps> = props => {
           label={route.name}
           key={route.key}
           onPress={() => {
-            navigation.navigate(route.name);
             setFocused(route.name);
+            navigation.navigate(route.name);
           }}
           inactiveTintColor={colors.white}
           labelStyle={styles.labelStyle}
@@ -57,7 +58,7 @@ const SideMenu: React.FC<DrawerContentComponentProps> = props => {
       <DrawerItem
         label="Logout"
         labelStyle={styles.labelStyle}
-        onPress={() => {}}
+        onPress={() => signOut()}
         inactiveTintColor={colors.white}
         pressColor={colors.white}
         icon={iconProps => <Icon name="logout" {...iconProps} />}

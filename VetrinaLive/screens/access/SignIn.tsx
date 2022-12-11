@@ -10,8 +10,7 @@ import Access from '../../layouts/Access';
 import {colors, spacing} from '../../theme/main';
 import textVariants from '../../theme/textVariants';
 import {login} from '../../services/access';
-import {setUser} from '../../redux/index';
-import {useDispatch} from 'react-redux';
+import useAuth from '../../hooks/useAuth';
 
 interface State {
   email: string;
@@ -52,12 +51,11 @@ function SignIn({navigation}: DefaultNavigationProps<'SignIn'>) {
     message: '',
     type: AlertType.error,
   });
-  const dispatchAction = useDispatch();
+  const {signIn} = useAuth();
 
   useEffect(() => {
     if (response) {
-      dispatchAction(setUser(response.user));
-      navigation.navigate('VetrinaLiveRoot');
+      signIn(response.user);
     }
 
     if (error) {

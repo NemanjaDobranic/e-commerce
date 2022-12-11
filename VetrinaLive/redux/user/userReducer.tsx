@@ -1,4 +1,4 @@
-import {SET_USER} from './userType';
+import {SET_USER, REMOVE_USER} from './userType';
 
 export interface User {
   name: string | undefined;
@@ -7,7 +7,7 @@ export interface User {
 }
 
 export interface UserAction {
-  type: typeof SET_USER;
+  type: typeof SET_USER | typeof REMOVE_USER;
   payload?: User;
 }
 
@@ -27,6 +27,12 @@ const userReducer: (state: User | undefined, action: UserAction) => User = (
         ...(action.payload as User),
       };
 
+    case REMOVE_USER:
+      const newState = state;
+      Object.keys(newState).forEach(
+        k => (newState[k as keyof User] = undefined),
+      );
+      return newState;
     default:
       return state;
   }

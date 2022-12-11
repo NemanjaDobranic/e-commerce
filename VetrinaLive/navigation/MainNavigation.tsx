@@ -6,13 +6,17 @@ import {
 import SignUp from '../screens/access/SignUp';
 import SignIn from '../screens/access/SignIn';
 import RecoverPassword from '../screens/access/RecoverPassword';
-import VetrinaLiveRoot from './DrawerNavigation';
+import VetrinaLiveRoot, {VetrinaLiveList} from './VetrinaLiveRoot';
+import useAuth from '../hooks/useAuth';
+import {ActivityIndicator, StyleSheet} from 'react-native';
+import {colors} from '../theme/main';
+import {NavigatorScreenParams} from '@react-navigation/native';
 
 export type RootStackParamList = {
   SignUp: undefined;
   SignIn: undefined;
   RecoverPassword: undefined;
-  VetrinaLiveRoot: undefined;
+  VetrinaLiveRoot: NavigatorScreenParams<VetrinaLiveList>;
 };
 
 export type DefaultNavigationProps<T extends keyof RootStackParamList> =
@@ -20,17 +24,44 @@ export type DefaultNavigationProps<T extends keyof RootStackParamList> =
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-class MainNavigation extends React.PureComponent {
-  render() {
+const MainNavigation: React.FC = () => {
+  const {isAuth} = useAuth();
+
+  if (isAuth === null) {
     return (
-      <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="SignIn" component={SignIn} />
-        <Stack.Screen name="RecoverPassword" component={RecoverPassword} />
-        <Stack.Screen name="VetrinaLiveRoot" component={VetrinaLiveRoot} />
-      </Stack.Navigator>
+      <ActivityIndicator
+        style={loading}
+        color={colors.primary.default}
+        size="large"
+      />
     );
   }
-}
+
+  return (
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      {!isAuth ? (
+        <>
+          <Stack.Screen name="SignUp" component={SignUp} />
+          <Stack.Screen name="SignIn" component={SignIn} />
+          <Stack.Screen name="RecoverPassword" component={RecoverPassword} />
+        </>
+      ) : (
+        <Stack.Screen name="VetrinaLiveRoot" component={VetrinaLiveRoot} />
+      )}
+    </Stack.Navigator>
+  );
+};
+
+const {loading} = StyleSheet.create({
+  loading: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
 export default MainNavigation;
