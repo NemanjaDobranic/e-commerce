@@ -1,17 +1,18 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {ImageStyle, StyleSheet, TextStyle, View, ViewStyle} from 'react-native';
 import {colors, spacing} from '../theme/main';
 import LinearGradient from 'react-native-linear-gradient';
 
 type StyleProps = {
   backgroundColor?: string;
-  height?: number;
+  height?: number | string;
   elevation?: number;
   marginTop?: number;
   marginBottom?: number;
   marginStart?: number;
   marginEnd?: number;
   borderRadius?: number;
+  style?: ViewStyle | TextStyle | ImageStyle;
 };
 
 type Props = StyleProps & {
@@ -45,6 +46,7 @@ const styles = ({
   marginEnd,
   marginStart,
   borderRadius,
+  style,
 }: StyleProps) =>
   StyleSheet.create({
     root: {
@@ -57,6 +59,7 @@ const styles = ({
       marginStart: marginStart ?? 1.8125 * spacing.s,
       marginEnd: marginEnd ?? 1.8125 * spacing.s,
       borderRadius: borderRadius ?? 1.25 * spacing.s,
+      ...style,
     },
   });
 

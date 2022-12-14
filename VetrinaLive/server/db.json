@@ -13,6 +13,36 @@
       "name": "John",
       "surname": "Twain",
       "id": 2
+    },
+    {
+      "email": "leo@mail.com",
+      "password": "$2a$10$cYFVHlvvbNMRHt2tpeUyb.VQuG.bzNVkuCiZoA/8hwoCMgfpycLI6",
+      "name": "Leo",
+      "surname": "Leo",
+      "id": 3
+    }
+  ],
+  "news": [
+    {
+      "id": 1,
+      "section": "e-commerce tips",
+      "title": "13 tips on How to Write a Business Plan with success",
+      "duration": 300,
+      "image": "http://192.168.1.4:3000/assets/images/graph.png"
+    },
+    {
+      "id": 2,
+      "section": "e-commerce tips",
+      "title": "10 profitable things to make and sell online for 100 euros",
+      "duration": 300,
+      "image": "http://192.168.1.4:3000/assets/images/camera.png"
+    },
+    {
+      "id": 3,
+      "section": "e-commerce tips",
+      "title": "10 profitable things to make and sell online for 100 euros",
+      "duration": 300,
+      "image": "http://192.168.1.4:3000/assets/images/graph.png"
     }
   ]
 }
