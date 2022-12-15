@@ -12,6 +12,11 @@ import SelectDropdown from 'react-native-select-dropdown';
 import useApi from '../../hooks/useApi';
 import {news} from '../../services/vetrinaLive';
 import Domain from '../../assets/images/domain.svg';
+import Capterra from '../../assets/images/capterra.svg';
+import Trustpilot from '../../assets/images/trustpilot.svg';
+import Support from '../../assets/images/simone.svg';
+import Divider from '../../components/Divider';
+import Button from '../../components/Button';
 
 interface News {
   id: number;
@@ -59,204 +64,305 @@ const Dashboard = () => {
           />
         </View>
       </Card>
-      <Card elevation={4} height="auto" style={styles.cardBody}>
-        <View style={styles.cardHeader}>
-          <FeatherIcon
-            name="tool"
-            size={spacing.l}
-            color={colors.primary.black}
-          />
-          <Text style={styles.cardHeaderText}>Configura la tua vetrina</Text>
-        </View>
-        <View style={styles.configContent1}>
-          <Text style={styles.configValue}>0%</Text>
-          <Text style={styles.configStatus}>completato</Text>
-        </View>
-        <Text style={styles.configContent2}>
-          Completa tutti i step per ricevere maggiore visibilità e una vetrina
-          accattivante
-        </Text>
-        <View style={styles.cardFooter}>
-          <Text style={styles.cardFooterText}>Completa la configurazione!</Text>
-          <FeatherIcon
-            name="arrow-right"
-            size={spacing.l}
-            color={colors.primary.default}
-          />
-        </View>
-      </Card>
-      <Card elevation={4} height="auto" style={styles.cardBody}>
-        <View style={styles.cardHeader}>
-          <FeatherIcon
-            name="eye"
-            size={spacing.l}
-            color={colors.primary.black}
-          />
-          <Text style={styles.cardHeaderText}>Visitors</Text>
-          <SelectDropdown
-            data={timePeriod}
-            onSelect={selectedItem => console.log(selectedItem)}
-            buttonTextAfterSelection={selectedItem => selectedItem}
-            rowTextForSelection={item => item}
-            defaultValue={timePeriod[1]}
-            buttonStyle={styles.selectPeriod}
-            buttonTextStyle={styles.selectPeriodText}
-            rowTextStyle={styles.selectPeriodText}
-            renderDropdownIcon={() => (
-              <MaterialIcon
-                name="keyboard-arrow-down"
-                size={spacing.l}
-                color={colors.grey[500]}
-              />
-            )}
-          />
-        </View>
-        <Text style={styles.visitorsValue}>0</Text>
-        <View style={styles.visitorsFooter}>
-          <Text style={styles.cardFooterText}>
-            Vuoi ricevere più visite? Contattaci!
+      <View style={styles.cardsHolder}>
+        <Card elevation={4} height="auto" style={styles.cardBody}>
+          <View style={styles.cardHeader}>
+            <FeatherIcon
+              name="tool"
+              size={spacing.l}
+              color={colors.primary.black}
+            />
+            <Text style={styles.cardHeaderText}>Configura la tua vetrina</Text>
+          </View>
+          <View style={styles.configContent1}>
+            <Text style={styles.configValue}>0%</Text>
+            <Text style={styles.configStatus}>completato</Text>
+          </View>
+          <Text style={styles.configContent2}>
+            Completa tutti i step per ricevere maggiore visibilità e una vetrina
+            accattivante
           </Text>
-          <FeatherIcon
-            name="arrow-right"
-            size={spacing.l}
-            color={colors.primary.default}
-          />
-        </View>
-      </Card>
-      <Card elevation={4} height="auto" style={styles.cardBody}>
-        <View style={styles.cardHeader}>
-          <FeatherIcon
-            name="list"
-            size={1.05 * spacing.l}
-            color={colors.primary.black}
-          />
-          <Text style={styles.cardHeaderText}>Orders</Text>
-          <SelectDropdown
-            data={timePeriod}
-            onSelect={selectedItem => console.log(selectedItem)}
-            buttonTextAfterSelection={selectedItem => selectedItem}
-            rowTextForSelection={item => item}
-            defaultValue={timePeriod[1]}
-            buttonStyle={styles.selectPeriod}
-            buttonTextStyle={styles.selectPeriodText}
-            rowTextStyle={styles.selectPeriodText}
-            renderDropdownIcon={() => (
-              <MaterialIcon
-                name="keyboard-arrow-down"
+          <View style={styles.cardFooter}>
+            <Text style={styles.cardFooterText}>
+              Completa la configurazione!
+            </Text>
+            <FeatherIcon
+              name="arrow-right"
+              size={spacing.l}
+              color={colors.primary.default}
+            />
+          </View>
+        </Card>
+        <Card elevation={4} height="auto" style={styles.cardBody}>
+          <View style={styles.cardHeader}>
+            <FeatherIcon
+              name="eye"
+              size={spacing.l}
+              color={colors.primary.black}
+            />
+            <Text style={styles.cardHeaderText}>Visitors</Text>
+            <SelectDropdown
+              data={timePeriod}
+              onSelect={selectedItem => console.log(selectedItem)}
+              buttonTextAfterSelection={selectedItem => selectedItem}
+              rowTextForSelection={item => item}
+              defaultValue={timePeriod[1]}
+              buttonStyle={styles.selectPeriod}
+              buttonTextStyle={styles.selectPeriodText}
+              rowTextStyle={styles.selectPeriodText}
+              renderDropdownIcon={() => (
+                <MaterialIcon
+                  name="keyboard-arrow-down"
+                  size={spacing.l}
+                  color={colors.grey[500]}
+                />
+              )}
+            />
+          </View>
+          <Text style={styles.visitorsValue}>0</Text>
+          <View style={styles.visitorsFooter}>
+            <Text style={styles.cardFooterText}>
+              Vuoi ricevere più visite? Contattaci!
+            </Text>
+            <FeatherIcon
+              name="arrow-right"
+              size={spacing.l}
+              color={colors.primary.default}
+            />
+          </View>
+        </Card>
+        <Card elevation={4} height="auto" style={styles.cardBody}>
+          <View style={styles.cardHeader}>
+            <FeatherIcon
+              name="list"
+              size={1.05 * spacing.l}
+              color={colors.primary.black}
+            />
+            <Text style={styles.cardHeaderText}>Orders</Text>
+            <SelectDropdown
+              data={timePeriod}
+              onSelect={selectedItem => console.log(selectedItem)}
+              buttonTextAfterSelection={selectedItem => selectedItem}
+              rowTextForSelection={item => item}
+              defaultValue={timePeriod[1]}
+              buttonStyle={styles.selectPeriod}
+              buttonTextStyle={styles.selectPeriodText}
+              rowTextStyle={styles.selectPeriodText}
+              renderDropdownIcon={() => (
+                <MaterialIcon
+                  name="keyboard-arrow-down"
+                  size={spacing.l}
+                  color={colors.grey[500]}
+                />
+              )}
+            />
+          </View>
+          <View style={styles.ordersTable}>
+            <View style={styles.ordersRow}>
+              <Text style={styles.ordersTerm}>Orders received:</Text>
+              <Text style={styles.ordersDef}>0</Text>
+            </View>
+            <View style={styles.ordersRow}>
+              <Text style={styles.ordersTerm}>Earnings:</Text>
+              <Text style={styles.ordersDef}>€ 0,00</Text>
+            </View>
+          </View>
+          <View style={styles.ordersFooter}>
+            <Text style={styles.ordersFooterText}>
+              10 free tips to increase your sales
+            </Text>
+            <FeatherIcon
+              name="arrow-right"
+              size={spacing.l}
+              color={colors.primary.default}
+            />
+          </View>
+        </Card>
+        <Card elevation={4} height="auto" style={styles.cardBody}>
+          <View style={styles.newsHeader}>
+            <FeatherIcon
+              name="file-text"
+              size={spacing.l}
+              color={colors.primary.black}
+            />
+            <Text style={styles.cardHeaderText}>Lastest news</Text>
+          </View>
+          {newsData &&
+            newsData.map(article => (
+              <Card
+                elevation={4}
+                key={article.id}
+                style={styles.newsArticle}
+                marginStart={0}
+                marginEnd={0}>
+                <Image
+                  resizeMode="cover"
+                  source={{uri: article.image}}
+                  style={styles.newsArticleImg}
+                />
+                <View style={styles.newsArticleContainer}>
+                  <Text style={styles.newsArticleSection}>
+                    {article.section}
+                  </Text>
+                  <Text
+                    numberOfLines={2}
+                    ellipsizeMode="tail"
+                    style={styles.newsArticleTitle}>
+                    {article.title}
+                  </Text>
+                  <Text style={styles.newsArticleDuration}>
+                    Stima lettura: {article.duration / 60} min
+                  </Text>
+                </View>
+              </Card>
+            ))}
+          <View style={styles.cardFooter}>
+            <Text style={styles.cardFooterText}>Visita il nostro Blog</Text>
+            <FeatherIcon
+              name="external-link"
+              size={spacing.l}
+              color={colors.primary.default}
+            />
+          </View>
+        </Card>
+        <Card elevation={4} style={styles.cardBody}>
+          <View style={styles.cardHeader}>
+            <MaterialCommunityIcon
+              name="view-grid-plus-outline"
+              size={spacing.l}
+              color={colors.primary.black}
+              style={{transform: [{rotateX: '180deg'}]}}
+            />
+            <Text style={styles.cardHeaderText}>Extensions Marketplace</Text>
+          </View>
+          <ScrollView horizontal style={styles.extensions}>
+            <View>
+              <Card
+                marginStart={0}
+                backgroundColor={colors.atomicTangerine}
+                style={styles.extensionCard}>
+                <Domain />
+              </Card>
+              <Text style={styles.extensionFooter}>Custom Domain</Text>
+            </View>
+
+            <View>
+              <Card
+                marginStart={0}
+                backgroundColor={colors.green.primary}
+                style={styles.extensionCard}>
+                <Text style={styles.extensionTitle}>+50</Text>
+                <Text style={styles.extensionContent}>Prodotti</Text>
+              </Card>
+              <Text style={styles.extensionFooter}>+ 50 Products</Text>
+            </View>
+          </ScrollView>
+
+          <View style={styles.ordersFooter}>
+            <Text style={styles.extensionsText}>Discover all extensions</Text>
+            <FeatherIcon
+              name="arrow-right"
+              size={spacing.l}
+              color={colors.primary.default}
+            />
+          </View>
+        </Card>
+        <Card
+          elevation={4}
+          height="auto"
+          backgroundColor={colors.primary.black}
+          style={styles.cardBody}>
+          <View style={styles.capterra}>
+            <Capterra />
+            <Text style={styles.capterraContent}>
+              Write a&nbsp;
+              <Text style={styles.positive}>positive</Text>
+              &nbsp;review on Capterra and receive the extension with&nbsp;
+              <Text style={styles.bold}>50 additional products.</Text>
+            </Text>
+            <View style={styles.capterraLink}>
+              <Text style={styles.capterraLinkText}>
+                Write a review on Capterra
+              </Text>
+              <FeatherIcon
+                name="arrow-right"
                 size={spacing.l}
-                color={colors.grey[500]}
+                color={colors.green.primary}
               />
-            )}
-          />
-        </View>
-        <View style={styles.ordersTable}>
-          <View style={styles.ordersRow}>
-            <Text style={styles.ordersTerm}>Orders received:</Text>
-            <Text style={styles.ordersDef}>0</Text>
+            </View>
           </View>
-          <View style={styles.ordersRow}>
-            <Text style={styles.ordersTerm}>Earnings:</Text>
-            <Text style={styles.ordersDef}>€ 0,00</Text>
+          <Divider marginVertical={spacing.l} color={colors.white} />
+          <View style={styles.capterra}>
+            <Trustpilot />
+            <Text style={styles.capterraContent}>
+              Show us your love by leaving a&nbsp;
+              <Text style={styles.positive}>positive</Text>
+              &nbsp;review on trust pilot and receive the extension of&nbsp;
+              <Text style={styles.bold}>50 additional products</Text>
+            </Text>
+            <View style={styles.capterraLink}>
+              <Text style={styles.capterraLinkText}>
+                Write a review on Trustpilot
+              </Text>
+              <FeatherIcon
+                name="arrow-right"
+                size={spacing.l}
+                color={colors.green.primary}
+              />
+            </View>
           </View>
-        </View>
-        <View style={styles.ordersFooter}>
-          <Text style={styles.ordersFooterText}>
-            10 free tips to increase your sales
+          <Text style={styles.footnote}>
+            * The two promotions are cumulative
           </Text>
-          <FeatherIcon
-            name="arrow-right"
-            size={spacing.l}
-            color={colors.primary.default}
-          />
-        </View>
-      </Card>
-      <Card elevation={4} height="auto" style={styles.cardBody}>
-        <View style={styles.newsHeader}>
-          <FeatherIcon
-            name="file-text"
-            size={spacing.l}
-            color={colors.primary.black}
-          />
-          <Text style={styles.cardHeaderText}>Lastest news</Text>
-        </View>
-        {newsData &&
-          newsData.map(article => (
-            <Card
-              elevation={4}
-              key={article.id}
-              style={styles.newsArticle}
-              marginStart={0}
-              marginEnd={0}>
-              <Image
-                resizeMode="cover"
-                source={{uri: article.image}}
-                style={styles.newsArticleImg}
-              />
-              <View style={styles.newsArticleContainer}>
-                <Text style={styles.newsArticleSection}>{article.section}</Text>
-                <Text
-                  numberOfLines={2}
-                  ellipsizeMode="tail"
-                  style={styles.newsArticleTitle}>
-                  {article.title}
-                </Text>
-                <Text style={styles.newsArticleDuration}>
-                  Stima lettura: {article.duration / 60} min
-                </Text>
-              </View>
-            </Card>
-          ))}
-        <View style={styles.cardFooter}>
-          <Text style={styles.cardFooterText}>Visita il nostro Blog</Text>
-          <FeatherIcon
-            name="external-link"
-            size={spacing.l}
-            color={colors.primary.default}
-          />
-        </View>
-      </Card>
-      <Card elevation={4} style={styles.cardBody}>
-        <View style={styles.cardHeader}>
-          <MaterialCommunityIcon
-            name="view-grid-plus-outline"
-            size={spacing.l}
-            color={colors.primary.black}
-            style={{transform: [{rotateX: '180deg'}]}}
-          />
-          <Text style={styles.cardHeaderText}>Extensions Marketplace</Text>
-        </View>
-        <ScrollView horizontal style={styles.extensions}>
-          <View>
-            <Card
-              marginStart={0}
-              backgroundColor={colors.atomicTangerine}
-              style={styles.extensionCard}>
-              <Domain />
-            </Card>
-            <Text style={styles.extensionFooter}>Custom Domain</Text>
+        </Card>
+        <Card elevation={4} height="auto" style={styles.cardBody}>
+          <View style={styles.cardHeader}>
+            <FeatherIcon
+              name="headphones"
+              size={spacing.l}
+              color={colors.primary.black}
+            />
+            <Text style={styles.cardHeaderText}>Customer support</Text>
           </View>
-
-          <View>
-            <Card
-              marginStart={0}
-              backgroundColor={colors.green.primary}
-              style={styles.extensionCard}>
-              <Text style={styles.extensionTitle}>+50</Text>
-              <Text style={styles.extensionContent}>Prodotti</Text>
-            </Card>
-            <Text style={styles.extensionFooter}>+ 50 Products</Text>
+          <View style={styles.cardContainer}>
+            <Support />
+            <Text style={styles.supportText}>Simone is here to help you</Text>
           </View>
-        </ScrollView>
-
-        <View style={styles.ordersFooter}>
-          <Text style={styles.extensionsText}>Discover all extensions</Text>
-          <FeatherIcon
-            name="arrow-right"
-            size={spacing.l}
-            color={colors.primary.default}
-          />
-        </View>
-      </Card>
+          <View style={styles.visitorsFooter}>
+            <Button
+              style={styles.btn}
+              borderColor={colors.primary.default}
+              borderRadius={0.625 * spacing.s}
+              textVariant={textVariants.button.large}
+              textColor={colors.white}>
+              Contact us
+            </Button>
+          </View>
+        </Card>
+        <Card elevation={4} style={styles.cardBody}>
+          <View style={styles.cardHeader}>
+            <FeatherIcon
+              name="users"
+              size={spacing.l}
+              color={colors.primary.black}
+            />
+            <Text style={styles.cardHeaderText}>Invite a friend!</Text>
+          </View>
+          <Text style={styles.bonus}>
+            <Text style={styles.positive}>Receive 50 products</Text> by inviting
+            a friend who subscribes to a plan. Your friend will receive a 30%
+            discount coupon valid for any plan.
+          </Text>
+          <View style={styles.ordersFooter}>
+            <Text style={styles.extensionsText}>Start inviting friends!</Text>
+            <FeatherIcon
+              name="arrow-right"
+              size={spacing.l}
+              color={colors.primary.default}
+            />
+          </View>
+        </Card>
+      </View>
     </ScrollView>
   );
 };
@@ -267,6 +373,9 @@ const styles = StyleSheet.create({
     color: colors.white,
     marginLeft: spacing.m,
     marginTop: 2 * spacing.m,
+  },
+  cardsHolder: {
+    top: -2.1 * spacing.xl,
   },
   storeLink: {
     marginTop: 1.125 * spacing.m,
@@ -426,6 +535,53 @@ const styles = StyleSheet.create({
     ...textVariants.button.large,
     color: colors.primary.black,
     textAlign: 'left',
+  },
+  capterra: {
+    flexDirection: 'column',
+  },
+  capterraContent: {
+    ...textVariants.paragraph.medium,
+    color: colors.white,
+    marginVertical: spacing.l,
+    textAlign: 'auto',
+  },
+  positive: {color: colors.green.primary, fontWeight: 'bold'},
+  capterraLink: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  capterraLinkText: {
+    ...textVariants.link.regular,
+    color: colors.green.primary,
+    textDecorationLine: 'underline',
+    marginRight: spacing.m,
+  },
+  bold: {
+    fontWeight: 'bold',
+  },
+  footnote: {
+    marginTop: 24,
+    color: colors.white,
+    ...textVariants.caption.regular,
+  },
+  cardContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 1.3 * spacing.l,
+  },
+  supportText: {
+    ...textVariants.title.title4,
+    fontFamily: 'SourceSansPro-Regular',
+    color: colors.primary.black,
+    marginLeft: spacing.m,
+  },
+  btn: {
+    backgroundColor: colors.primary.default,
+  },
+  bonus: {
+    ...textVariants.paragraph.medium,
+    color: colors.primary.black,
+    marginVertical: spacing.l,
   },
 });
 

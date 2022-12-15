@@ -5,15 +5,21 @@ import textVariants from '../theme/textVariants';
 
 interface Props {
   content?: string;
-  marginVertical: number;
+  marginVertical?: number;
+  color?: string;
 }
 
-const Divider: React.FC<Props> = ({content, marginVertical}) => {
+const Divider: React.FC<Props> = ({content, marginVertical, color}) => {
   return (
-    <View style={styles.root}>
+    <View
+      style={{
+        ...styles.root,
+        marginVertical: marginVertical,
+        backgroundColor: color,
+      }}>
       <View style={styles.divider} />
       {content && (
-        <View style={{...styles.content, marginVertical: marginVertical}}>
+        <View style={styles.content}>
           <Text style={styles.text}>{content}</Text>
         </View>
       )}

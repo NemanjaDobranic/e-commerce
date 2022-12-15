@@ -35,6 +35,11 @@ const paragraph = StyleSheet.create({
     fontSize: 13,
     lineHeight: 16,
   },
+  medium: {
+    fontFamily: 'SourceSansPro-Regular',
+    fontSize: 18,
+    lineHeight: 24,
+  },
   large: {
     fontFamily: 'SourceSansPro-Regular',
     fontSize: 20,
