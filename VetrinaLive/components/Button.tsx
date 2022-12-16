@@ -22,7 +22,7 @@ interface StyleProps {
 interface Props extends StyleProps {
   icon?: React.ReactElement;
   onPress?: () => void;
-  children: string;
+  children: string | JSX.Element;
 }
 
 const Button: React.FC<Props> = ({icon, onPress, children, ...styleProps}) => {

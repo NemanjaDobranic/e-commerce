@@ -13,3 +13,16 @@ export const news = () => {
     },
   };
 };
+
+export const products = () => {
+  return {
+    path: '/products',
+    options: {
+      method: GET,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    },
+  };
+};
