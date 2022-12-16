@@ -74,7 +74,10 @@ const headerToolbar = [
       />,
     ],
   },
-
+  {
+    routeName: 'Payment',
+    actions: [],
+  },
   {
     routeName: 'Subsription',
     actions: [],

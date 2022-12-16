@@ -18,6 +18,10 @@ const icons = [
     icon: 'shop',
   },
   {
+    routeName: 'Payment',
+    icon: 'payment',
+  },
+  {
     routeName: 'Orders',
     icon: 'shopping-cart',
   },
