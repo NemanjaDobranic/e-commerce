@@ -88,5 +88,49 @@
       "price": 70,
       "image": "http://192.168.1.4:3000/assets/images/earth.jpg"
     }
+  ],
+  "payments": [
+    {
+      "id": 1,
+      "name": "Cash",
+      "image": "http://192.168.1.4:3000/assets/images/offline.jpg",
+      "enabled": "true"
+    },
+    {
+      "id": 2,
+      "name": "Wire Transfer",
+      "image": "http://192.168.1.4:3000/assets/images/wiretransfer.jpg",
+      "enabled": "false"
+    },
+    {
+      "id": 3,
+      "name": "Stripe",
+      "image": "http://192.168.1.4:3000/assets/images/logos_stripe.jpg",
+      "enabled": "false"
+    },
+    {
+      "id": 4,
+      "name": "Paypall",
+      "image": "http://192.168.1.4:3000/assets/images/paypall.jpg",
+      "enabled": "false"
+    },
+    {
+      "id": 5,
+      "name": "Razoplay",
+      "image": "http://192.168.1.4:3000/assets/images/razoplay.jpg",
+      "enabled": "false"
+    },
+    {
+      "id": 6,
+      "name": "AliPay",
+      "image": "http://192.168.1.4:3000/assets/images/alipay.jpg",
+      "enabled": ""
+    },
+    {
+      "id": 7,
+      "name": "Paystack",
+      "image": "http://192.168.1.4:3000/assets/images/paystack.jpg",
+      "enabled": ""
+    }
   ]
 }

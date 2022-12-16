@@ -26,3 +26,16 @@ export const products = () => {
     },
   };
 };
+
+export const payments = () => {
+  return {
+    path: '/payments',
+    options: {
+      method: GET,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    },
+  };
+};
