@@ -7,8 +7,10 @@ import {spacing, colors} from '../../../theme/main';
 import textVariants from '../../../theme/textVariants';
 import {actions, RichEditor, RichToolbar} from 'react-native-pell-rich-editor';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import FeatherIcon from 'react-native-vector-icons/Feather';
 import Button from '../../../components/Button';
 import Weight from '../../../assets/images/weight.svg';
+import SelectDropdown from 'react-native-select-dropdown';
 // {
 //   navigation,
 // }: NativeStackScreenProps<ProductsParamList, 'NewProduct'>
@@ -16,6 +18,7 @@ const NewProduct = () => {
   const richText = useRef(null);
   const [discounted, setDiscounted] = useState(false);
   const [featured, setFeatured] = useState(false);
+  const categories = ['Category 1', 'Category 2', 'Category 3'];
   return (
     <ScrollView>
       <Card style={styles.cardContainer}>
@@ -110,7 +113,7 @@ const NewProduct = () => {
           icon={
             <MaterialIcon
               name="euro-symbol"
-              size={0.84 * spacing.l}
+              size={0.6 * spacing.l}
               color={colors.primary.black}
               style={styles.currency}
             />
@@ -128,7 +131,7 @@ const NewProduct = () => {
           icon={
             <MaterialIcon
               name="euro-symbol"
-              size={0.84 * spacing.l}
+              size={0.6 * spacing.l}
               color={colors.grey[300]}
               style={{...styles.currency, borderColor: colors.grey[300]}}
             />
@@ -148,7 +151,37 @@ const NewProduct = () => {
         </View>
       </Card>
       <Card style={styles.cardContainer}>
-        <Text style={styles.header}>Details</Text>
+        <Text style={styles.header}>Category</Text>
+        <SelectDropdown
+          data={categories}
+          onSelect={selectedItem => console.log(selectedItem)}
+          buttonTextAfterSelection={selectedItem => selectedItem}
+          rowTextForSelection={item => item}
+          defaultButtonText="Select category"
+          buttonStyle={styles.select}
+          buttonTextStyle={styles.selectText}
+          renderDropdownIcon={() => (
+            <MaterialIcon
+              name="keyboard-arrow-down"
+              size={spacing.l}
+              color={colors.grey[500]}
+            />
+          )}
+        />
+        <View style={styles.sku}>
+          <Text style={styles.skuLabel}>Product code / SKU</Text>
+          <FeatherIcon
+            name="info"
+            size={spacing.l}
+            color={colors.primary.black}
+          />
+        </View>
+        <Input
+          type="name"
+          placeholder="Leave empty to automatically generate"
+          value=""
+          style={styles.input}
+        />
         <Text style={styles.label}>Weight</Text>
         <Button
           borderColor={colors.grey[300]}
@@ -157,8 +190,25 @@ const NewProduct = () => {
           textColor={colors.primary.black}
           gap={1.225 * spacing.s}
           style={styles.inputIcon}
-          icon={<Weight />}>
+          icon={<Weight height={spacing.l} />}>
           0 g
+        </Button>
+        <Text style={styles.label}>Availability</Text>
+        <Button
+          borderColor={colors.grey[300]}
+          borderRadius={0.625 * spacing.s}
+          textVariant={textVariants.input.input}
+          textColor={colors.primary.black}
+          gap={1.225 * spacing.s}
+          style={styles.inputIcon}
+          icon={
+            <FeatherIcon
+              name="box"
+              size={spacing.l}
+              color={colors.primary.black}
+            />
+          }>
+          0
         </Button>
         <View style={styles.priceCheckbox}>
           <Checkbox
@@ -225,6 +275,35 @@ const styles = StyleSheet.create({
   priceCheckbox: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  select: {
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderRadius: 0.625 * spacing.s,
+    borderColor: colors.grey[200],
+    paddingVertical: spacing.m,
+    paddingStart: 3.125 * spacing.s,
+    paddingEnd: 2.5 * spacing.s,
+    paddingHorizontal: 0,
+    height: 'auto',
+    minWidth: 1.8 * spacing.xl,
+    width: '100%',
+    marginBottom: spacing.l,
+  },
+  selectText: {
+    color: colors.grey[500],
+    ...textVariants.input.input,
+    textAlign: 'left',
+  },
+  sku: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: spacing.s,
+  },
+  skuLabel: {
+    ...textVariants.form.label,
+    color: colors.grey[700],
   },
 });
 
