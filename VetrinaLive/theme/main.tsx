@@ -17,6 +17,7 @@ export const colors = {
     300: '#B6BEC6',
     400: '#7D8A99',
     500: '#6C7C8C',
+    600: '#3B5166',
     700: '#546679',
   },
   atomicTangerine: '#FFA26B',

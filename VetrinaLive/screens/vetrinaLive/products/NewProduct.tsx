@@ -11,16 +11,182 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 import Button from '../../../components/Button';
 import Weight from '../../../assets/images/weight.svg';
 import SelectDropdown from 'react-native-select-dropdown';
-// {
-//   navigation,
-// }: NativeStackScreenProps<ProductsParamList, 'NewProduct'>
-const NewProduct = () => {
+import RadioGroup, {RadioButtonProps} from 'react-native-radio-buttons-group';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {ProductsParamList} from '../../../navigation/VetrinaLive/ProductsRoot/ProductsRoot';
+import Tabs from '../../../components/Tabs';
+
+const styles = StyleSheet.create({
+  cardContainer: {padding: spacing.l},
+  header: {
+    ...textVariants.title.title4,
+    color: colors.primary.black,
+    marginBottom: spacing.l,
+  },
+  label: {
+    ...textVariants.form.label,
+    color: colors.grey[700],
+    marginBottom: spacing.s,
+  },
+  input: {
+    marginBottom: spacing.l,
+    paddingHorizontal: 1.25 * spacing.s,
+    paddingVertical: 1.25 * spacing.s,
+  },
+  richTextToolbarStyle: {
+    backgroundColor: colors.white,
+    justifyContent: 'space-between',
+    borderBottomWidth: 1,
+    borderBottomColor: colors.grey[100],
+    height: 1.4 * spacing.xl,
+  },
+  flatContainerStyle: {
+    width: '100%',
+    justifyContent: 'space-between',
+    padding: spacing.m,
+  },
+  editorContainer: {
+    borderWidth: 1,
+    borderColor: colors.grey[400],
+    borderRadius: 0.625 * spacing.s,
+  },
+  currency: {
+    borderWidth: 1,
+    borderColor: colors.primary.black,
+    padding: spacing.s / 2,
+    borderRadius: spacing.xl,
+  },
+  inputIcon: {
+    marginBottom: spacing.l,
+    paddingHorizontal: 1.25 * spacing.s,
+    paddingVertical: 1.25 * spacing.s,
+    justifyContent: 'flex-start',
+  },
+  priceCheckbox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  select: {
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderRadius: 0.625 * spacing.s,
+    borderColor: colors.grey[200],
+    paddingVertical: spacing.m,
+    paddingStart: 3.125 * spacing.s,
+    paddingEnd: 2.5 * spacing.s,
+    paddingHorizontal: 0,
+    height: 'auto',
+    minWidth: 1.8 * spacing.xl,
+    width: '100%',
+    marginBottom: spacing.l,
+  },
+  selectText: {
+    color: colors.grey[500],
+    ...textVariants.input.input,
+    textAlign: 'left',
+  },
+  sku: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: spacing.s,
+  },
+  skuLabel: {
+    ...textVariants.form.label,
+    color: colors.grey[700],
+  },
+  radioLabel: {
+    ...textVariants.title.title5,
+    color: colors.primary.black,
+  },
+  allProducts: {
+    backgroundColor: colors.white,
+    justifyContent: 'center',
+    width: 3.75 * spacing.xl,
+    marginStart: 1.875 * spacing.s,
+    marginTop: 1.875 * spacing.s,
+    marginBottom: spacing.l,
+    paddingVertical: 1.125 * spacing.s,
+  },
+  mainHeader: {
+    marginStart: 1.875 * spacing.s,
+    marginBottom: spacing.l,
+    ...textVariants.title.title2,
+    color: colors.primary.black,
+  },
+  tabsContainer: {
+    width: '80%',
+    marginBottom: spacing.l,
+  },
+});
+
+const radioButtonsData: RadioButtonProps[] = [
+  {
+    id: '1',
+    label: 'Physical',
+    value: 'physical',
+    labelStyle: styles.radioLabel,
+    selected: false,
+    borderColor: colors.grey[200],
+    color: colors.primary.default,
+  },
+  {
+    id: '2',
+    label: 'Digital',
+    value: 'digital',
+    selected: false,
+    labelStyle: styles.radioLabel,
+    borderColor: colors.grey[200],
+    color: colors.primary.default,
+  },
+];
+const tabItems = [
+  {
+    id: 1,
+    name: 'info',
+  },
+  {
+    id: 2,
+    name: 'variants',
+  },
+];
+const NewProduct = ({
+  navigation,
+}: NativeStackScreenProps<ProductsParamList, 'NewProduct'>) => {
   const richText = useRef(null);
   const [discounted, setDiscounted] = useState(false);
   const [featured, setFeatured] = useState(false);
   const categories = ['Category 1', 'Category 2', 'Category 3'];
+  const [radioButtons, setRadioButtons] =
+    useState<RadioButtonProps[]>(radioButtonsData);
+
+  function onPressRadioButton(radioButtonsArray: RadioButtonProps[]) {
+    setRadioButtons(radioButtonsArray);
+  }
+
   return (
     <ScrollView>
+      <Button
+        borderColor={colors.primary.default}
+        borderRadius={2.625 * spacing.xl}
+        textVariant={textVariants.button.large}
+        textColor={colors.primary.black}
+        gap={spacing.s}
+        style={styles.allProducts}
+        onPress={() => navigation.navigate('ListView')}
+        icon={
+          <MaterialIcon
+            name="keyboard-arrow-left"
+            size={spacing.l}
+            color={colors.primary.black}
+          />
+        }>
+        All products
+      </Button>
+      <Text style={styles.mainHeader}>New product</Text>
+      <View style={styles.tabsContainer}>
+        <Tabs items={tabItems} />
+      </View>
       <Card style={styles.cardContainer}>
         <Text style={styles.header}>General Information</Text>
         <Text style={styles.label}>Product name</Text>
@@ -92,7 +258,7 @@ const NewProduct = () => {
             flatContainerStyle={styles.flatContainerStyle}
           />
           <RichEditor
-            ref={richText} // from useRef()
+            ref={richText}
             onChange={() => {}}
             placeholder="Description (0 / 5000)"
             androidHardwareAccelerationDisabled={true}
@@ -214,7 +380,7 @@ const NewProduct = () => {
           <Checkbox
             tintColors={{true: colors.primary.black, false: colors.grey[200]}}
             value={featured}
-            onValueChange={() => setFeatured(!discounted)}
+            onValueChange={() => setFeatured(!featured)}
           />
           <Text
             style={{...textVariants.button.large, color: colors.primary.black}}>
@@ -222,89 +388,16 @@ const NewProduct = () => {
           </Text>
         </View>
       </Card>
+      <Card style={styles.cardContainer}>
+        <Text style={styles.header}>Product type</Text>
+        <RadioGroup
+          layout="row"
+          radioButtons={radioButtons}
+          onPress={onPressRadioButton}
+        />
+      </Card>
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  cardContainer: {padding: spacing.l},
-  header: {
-    ...textVariants.title.title4,
-    color: colors.primary.black,
-    marginBottom: spacing.l,
-  },
-  label: {
-    ...textVariants.form.label,
-    color: colors.grey[700],
-    marginBottom: spacing.s,
-  },
-  input: {
-    marginBottom: spacing.l,
-    paddingHorizontal: 1.25 * spacing.s,
-    paddingVertical: 1.25 * spacing.s,
-  },
-  richTextToolbarStyle: {
-    backgroundColor: colors.white,
-    justifyContent: 'space-between',
-    borderBottomWidth: 1,
-    borderBottomColor: colors.grey[100],
-    height: 1.4 * spacing.xl,
-  },
-  flatContainerStyle: {
-    width: '100%',
-    justifyContent: 'space-between',
-    padding: spacing.m,
-  },
-  editorContainer: {
-    borderWidth: 1,
-    borderColor: colors.grey[400],
-    borderRadius: 0.625 * spacing.s,
-  },
-  currency: {
-    borderWidth: 1,
-    borderColor: colors.primary.black,
-    padding: spacing.s / 2,
-    borderRadius: spacing.xl,
-  },
-  inputIcon: {
-    marginBottom: spacing.l,
-    paddingHorizontal: 1.25 * spacing.s,
-    paddingVertical: 1.25 * spacing.s,
-    justifyContent: 'flex-start',
-  },
-  priceCheckbox: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  select: {
-    backgroundColor: 'transparent',
-    borderWidth: 1,
-    borderRadius: 0.625 * spacing.s,
-    borderColor: colors.grey[200],
-    paddingVertical: spacing.m,
-    paddingStart: 3.125 * spacing.s,
-    paddingEnd: 2.5 * spacing.s,
-    paddingHorizontal: 0,
-    height: 'auto',
-    minWidth: 1.8 * spacing.xl,
-    width: '100%',
-    marginBottom: spacing.l,
-  },
-  selectText: {
-    color: colors.grey[500],
-    ...textVariants.input.input,
-    textAlign: 'left',
-  },
-  sku: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: spacing.s,
-  },
-  skuLabel: {
-    ...textVariants.form.label,
-    color: colors.grey[700],
-  },
-});
 
 export default NewProduct;
