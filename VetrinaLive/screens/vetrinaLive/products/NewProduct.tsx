@@ -1,16 +1,21 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import Checkbox from '@react-native-community/checkbox';
 import Card from '../../../components/Card';
 import Input from '../../../components/Input';
 import {spacing, colors} from '../../../theme/main';
 import textVariants from '../../../theme/textVariants';
 import {actions, RichEditor, RichToolbar} from 'react-native-pell-rich-editor';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import Button from '../../../components/Button';
+import Weight from '../../../assets/images/weight.svg';
 // {
 //   navigation,
 // }: NativeStackScreenProps<ProductsParamList, 'NewProduct'>
 const NewProduct = () => {
   const richText = useRef(null);
+  const [discounted, setDiscounted] = useState(false);
+  const [featured, setFeatured] = useState(false);
   return (
     <ScrollView>
       <Card style={styles.cardContainer}>
@@ -92,6 +97,81 @@ const NewProduct = () => {
           />
         </View>
       </Card>
+      <Card style={styles.cardContainer}>
+        <Text style={styles.header}>Price</Text>
+        <Text style={styles.label}>Original price</Text>
+        <Button
+          borderColor={colors.grey[300]}
+          borderRadius={0.625 * spacing.s}
+          textVariant={textVariants.input.input}
+          textColor={colors.primary.black}
+          gap={1.225 * spacing.s}
+          style={styles.inputIcon}
+          icon={
+            <MaterialIcon
+              name="euro-symbol"
+              size={0.84 * spacing.l}
+              color={colors.primary.black}
+              style={styles.currency}
+            />
+          }>
+          0
+        </Button>
+        <Text style={styles.label}>Discounted price</Text>
+        <Button
+          borderColor={colors.grey[300]}
+          borderRadius={0.625 * spacing.s}
+          textVariant={textVariants.input.input}
+          textColor={colors.grey[300]}
+          gap={1.225 * spacing.s}
+          style={{...styles.inputIcon, backgroundColor: colors.grey[100]}}
+          icon={
+            <MaterialIcon
+              name="euro-symbol"
+              size={0.84 * spacing.l}
+              color={colors.grey[300]}
+              style={{...styles.currency, borderColor: colors.grey[300]}}
+            />
+          }>
+          Lorem ipsum
+        </Button>
+        <View style={styles.priceCheckbox}>
+          <Checkbox
+            tintColors={{true: colors.primary.black, false: colors.grey[200]}}
+            value={discounted}
+            onValueChange={() => setDiscounted(!discounted)}
+          />
+          <Text
+            style={{...textVariants.button.large, color: colors.primary.black}}>
+            Activate discounted price
+          </Text>
+        </View>
+      </Card>
+      <Card style={styles.cardContainer}>
+        <Text style={styles.header}>Details</Text>
+        <Text style={styles.label}>Weight</Text>
+        <Button
+          borderColor={colors.grey[300]}
+          borderRadius={0.625 * spacing.s}
+          textVariant={textVariants.input.input}
+          textColor={colors.primary.black}
+          gap={1.225 * spacing.s}
+          style={styles.inputIcon}
+          icon={<Weight />}>
+          0 g
+        </Button>
+        <View style={styles.priceCheckbox}>
+          <Checkbox
+            tintColors={{true: colors.primary.black, false: colors.grey[200]}}
+            value={featured}
+            onValueChange={() => setFeatured(!discounted)}
+          />
+          <Text
+            style={{...textVariants.button.large, color: colors.primary.black}}>
+            This is a featured product
+          </Text>
+        </View>
+      </Card>
     </ScrollView>
   );
 };
@@ -129,6 +209,22 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.grey[400],
     borderRadius: 0.625 * spacing.s,
+  },
+  currency: {
+    borderWidth: 1,
+    borderColor: colors.primary.black,
+    padding: spacing.s / 2,
+    borderRadius: spacing.xl,
+  },
+  inputIcon: {
+    marginBottom: spacing.l,
+    paddingHorizontal: 1.25 * spacing.s,
+    paddingVertical: 1.25 * spacing.s,
+    justifyContent: 'flex-start',
+  },
+  priceCheckbox: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });
 
