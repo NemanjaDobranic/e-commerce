@@ -60,6 +60,14 @@ const caption = StyleSheet.create({
   },
 });
 
+const form = StyleSheet.create({
+  label: {
+    fontFamily: 'SourceSansPro-SemiBold',
+    fontSize: 15,
+    lineHeight: 20,
+  },
+});
+
 const title = StyleSheet.create({
   title1: {
     fontFamily: 'SourceSansPro-SemiBold',
@@ -108,4 +116,5 @@ export default {
   paragraph,
   caption,
   input,
+  form,
 };

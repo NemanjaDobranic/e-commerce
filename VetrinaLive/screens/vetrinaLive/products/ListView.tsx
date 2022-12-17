@@ -9,16 +9,18 @@ import {
   View,
 } from 'react-native';
 import {Table, Row, Rows} from 'react-native-table-component';
-import Card from '../../components/Card';
-import {colors, spacing} from '../../theme/main';
-import textVariants from '../../theme/textVariants';
+import Card from '../../../components/Card';
+import {colors, spacing} from '../../../theme/main';
+import textVariants from '../../../theme/textVariants';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
-import useApi from '../../hooks/useApi';
-import {products} from '../../services/vetrinaLive';
+import useApi from '../../../hooks/useApi';
+import {products} from '../../../services/vetrinaLive';
 import SelectDropdown from 'react-native-select-dropdown';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import FeatherIcon from 'react-native-vector-icons/Feather';
-import Button from '../../components/Button';
+import Button from '../../../components/Button';
+import {ProductsParamList} from '../../../navigation/VetrinaLive/ProductsRoot/ProductsRoot';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 interface Product {
   id: number;
@@ -32,7 +34,9 @@ interface ProductsTable {
   tableData: Array<Array<string | number | JSX.Element>>;
 }
 
-const Products = () => {
+const ListView = ({
+  navigation,
+}: NativeStackScreenProps<ProductsParamList, 'ListView'>) => {
   const [{response, loading}] = useApi(products(), true);
   const [productsTable, setProductsTable] = useState<ProductsTable>();
   const size = [10, 25, 50, 100];
@@ -97,7 +101,8 @@ const Products = () => {
           borderColor={colors.primary.default}
           borderRadius={0.625 * spacing.s}
           textVariant={textVariants.button.large}
-          textColor={colors.white}>
+          textColor={colors.white}
+          onPress={() => navigation.navigate('NewProduct')}>
           <FeatherIcon name="plus" color={colors.white} size={spacing.l} />
         </Button>
       </View>
@@ -252,4 +257,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Products;
+export default ListView;

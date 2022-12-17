@@ -6,7 +6,7 @@ import {
 import SignUp from '../screens/access/SignUp';
 import SignIn from '../screens/access/SignIn';
 import RecoverPassword from '../screens/access/RecoverPassword';
-import VetrinaLiveRoot, {VetrinaLiveList} from './VetrinaLiveRoot';
+import VetrinaLiveRoot, {VetrinaLiveList} from './VetrinaLive/VetrinaLiveRoot';
 import useAuth from '../hooks/useAuth';
 import {ActivityIndicator, StyleSheet} from 'react-native';
 import {colors} from '../theme/main';

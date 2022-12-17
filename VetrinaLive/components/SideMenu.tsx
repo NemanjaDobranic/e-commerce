@@ -37,7 +37,6 @@ const SideMenu: React.FC<DrawerContentComponentProps> = props => {
   const {signOut} = useAuth();
   const getIcon = (routeName: string) =>
     icons.find(icon => icon.routeName === routeName)?.icon ?? 'device-unknown';
-
   return (
     <DrawerContentScrollView {...props} style={styles.root}>
       <Logo style={styles.logo} />
