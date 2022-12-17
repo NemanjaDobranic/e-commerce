@@ -24,6 +24,7 @@ export const colors = {
   tyrianPurple: '#BE52F2',
   sangria: '#5E1914',
   coral: '#feb9b9',
+  water: '#F0F2FE',
 };
 
 export const spacing = {

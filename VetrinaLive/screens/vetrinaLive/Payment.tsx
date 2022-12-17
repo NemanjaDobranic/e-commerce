@@ -32,12 +32,18 @@ const Payment = () => {
   }, [response]);
 
   const getButtonStyle = (enabled: string): object => {
-    const style = enabled !== '' ? styles.comingSoon : styles.comingSoon;
+    const style =
+      enabled === ''
+        ? styles.comingSoon
+        : enabled === 'true'
+        ? styles.enabled
+        : styles.disabled;
     return {...styles.btn, ...style};
   };
 
   return !loading && paymentsData ? (
     <ScrollView>
+      <Text style={styles.header}>Payment methods</Text>
       {paymentsData.map(payment => (
         <Card
           key={payment.id}
@@ -56,7 +62,13 @@ const Payment = () => {
             borderColor={colors.primary.default}
             borderRadius={0.625 * spacing.s}
             textVariant={textVariants.button.large}
-            textColor={colors.white}>
+            textColor={
+              payment.enabled === ''
+                ? colors.cornflower
+                : payment.enabled === 'true'
+                ? colors.green.primary
+                : colors.grey[400]
+            }>
             {payment.enabled !== '' ? 'Disable' : 'Comming soon'}
           </Button>
         </Card>
@@ -105,9 +117,26 @@ const styles = StyleSheet.create({
     height: 2 * spacing.m,
     padding: 0,
     paddingHorizontal: spacing.m,
+    ...textVariants.button.medium,
   },
   comingSoon: {
-    backgroundColor: '#F0F2FE',
+    backgroundColor: colors.water,
+    borderColor: colors.water,
+  },
+  enabled: {
+    backgroundColor: colors.green.light,
+    borderColor: colors.green.light,
+  },
+  disabled: {
+    backgroundColor: colors.grey[100],
+    borderColor: colors.grey[100],
+  },
+  header: {
+    ...textVariants.title.title3,
+    marginTop: 2 * spacing.l,
+    marginBottom: spacing.l,
+    marginStart: spacing.m,
+    color: colors.primary.black,
   },
 });
 export default Payment;
