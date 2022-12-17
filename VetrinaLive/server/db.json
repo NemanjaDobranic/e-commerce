@@ -132,5 +132,57 @@
       "image": "http://192.168.1.4:3000/assets/images/paystack.jpg",
       "enabled": ""
     }
+  ],
+  "orders": [
+    {
+      "id": 2221,
+      "name": "Cameron Williamson",
+      "status": "shipped"
+    },
+    {
+      "id": 2222,
+      "name": "Cameron Williamson",
+      "status": "new"
+    },
+    {
+      "id": 2223,
+      "name": "Cameron Williamson",
+      "status": "returnMade"
+    },
+    {
+      "id": 2224,
+      "name": "Cameron Williamson",
+      "status": "new"
+    },
+    {
+      "id": 2225,
+      "name": "Cameron Williamson",
+      "status": "cancelled"
+    },
+    {
+      "id": 2226,
+      "name": "Cameron Williamson",
+      "status": "new"
+    },
+    {
+      "id": 2227,
+      "name": "Cameron Williamson",
+      "status": "new"
+    },
+    {
+      "id": 2228,
+      "name": "Cameron Williamson",
+      "status": "inProgress"
+    },
+    {
+      "id": 2229,
+      "name": "Cameron Williamson",
+      "status": "inProgress"
+    },
+    {
+      "id": 2230,
+      "name": "Cameron Williamson",
+      "status": "new"
+    }
   ]
 }

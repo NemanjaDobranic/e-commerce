@@ -27,6 +27,7 @@ export const colors = {
   sangria: '#5E1914',
   coral: '#feb9b9',
   water: '#F0F2FE',
+  darkBlue: '#233B53',
 };
 
 export const spacing = {

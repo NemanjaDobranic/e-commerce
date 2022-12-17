@@ -2,7 +2,7 @@ import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Dashboard from '../../screens/vetrinaLive/Dashboard';
 import Payment from '../../screens/vetrinaLive/Payment';
-import Orders from '../../screens/vetrinaLive/Orders';
+import Bulk from '../../screens/vetrinaLive/orders/Bulk';
 import Subsription from '../../screens/vetrinaLive/Subsription';
 import SideMenu from '../../components/SideMenu';
 import DrawerHeader from '../../components/DrawerHeader';
@@ -27,7 +27,7 @@ export default function VetrinaLiveRoot() {
       <Drawer.Screen name="Dashboard" component={Dashboard} />
       <Drawer.Screen name="Products" component={ProductsRoot} />
       <Drawer.Screen name="Payment" component={Payment} />
-      <Drawer.Screen name="Orders" component={Orders} />
+      <Drawer.Screen name="Orders" component={Bulk} />
       <Drawer.Screen name="Subsription" component={Subsription} />
     </Drawer.Navigator>
   );

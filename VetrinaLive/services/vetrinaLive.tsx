@@ -39,3 +39,16 @@ export const payments = () => {
     },
   };
 };
+
+export const orders = () => {
+  return {
+    path: '/orders',
+    options: {
+      method: GET,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    },
+  };
+};
