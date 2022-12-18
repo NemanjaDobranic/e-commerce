@@ -185,12 +185,12 @@
       "status": "new"
     }
   ],
-  "plans": [
+  "subscriptions": [
     {
       "id": 1,
       "type": "free",
-      "subscription": {
-        "value": 0,
+      "plan": {
+        "price": 0,
         "type": "yearly"
       },
       "productsLimit": 150,
@@ -199,8 +199,8 @@
     {
       "id": 2,
       "type": "showcase",
-      "subscription": {
-        "value": 109,
+      "plan": {
+        "price": 109,
         "type": "yearly"
       },
       "productsLimit": 150,
@@ -209,8 +209,8 @@
     {
       "id": 3,
       "type": "shop",
-      "subscription": {
-        "value": 209,
+      "plan": {
+        "price": 209,
         "type": "yearly"
       },
       "productsLimit": 150,
@@ -219,8 +219,8 @@
     {
       "id": 4,
       "type": "showcase",
-      "subscription": {
-        "value": 399,
+      "plan": {
+        "price": 399,
         "type": "yearly"
       },
       "productsLimit": 150,
@@ -229,8 +229,8 @@
     {
       "id": 5,
       "type": "showcase",
-      "subscription": {
-        "value": 5,
+      "plan": {
+        "price": 5,
         "type": "monthly"
       },
       "productsLimit": 10,
@@ -239,8 +239,8 @@
     {
       "id": 6,
       "type": "free",
-      "subscription": {
-        "value": 0,
+      "plan": {
+        "price": 0,
         "type": "monthly"
       },
       "productsLimit": 10,
@@ -249,8 +249,8 @@
     {
       "id": 7,
       "type": "showcase",
-      "subscription": {
-        "value": 5.99,
+      "plan": {
+        "price": 5.99,
         "type": "monthly"
       },
       "productsLimit": 10,
@@ -259,8 +259,8 @@
     {
       "id": 8,
       "type": "shop",
-      "subscription": {
-        "value": 7.99,
+      "plan": {
+        "price": 7.99,
         "type": "monthly"
       },
       "productsLimit": 10,
