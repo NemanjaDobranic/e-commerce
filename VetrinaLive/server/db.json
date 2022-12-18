@@ -184,5 +184,87 @@
       "name": "Cameron Williamson",
       "status": "new"
     }
+  ],
+  "plans": [
+    {
+      "id": 1,
+      "type": "free",
+      "subscription": {
+        "value": 0,
+        "type": "yearly"
+      },
+      "productsLimit": 150,
+      "bonus": null
+    },
+    {
+      "id": 2,
+      "type": "showcase",
+      "subscription": {
+        "value": 109,
+        "type": "yearly"
+      },
+      "productsLimit": 150,
+      "bonus": "2 mesi in regalo"
+    },
+    {
+      "id": 3,
+      "type": "shop",
+      "subscription": {
+        "value": 209,
+        "type": "yearly"
+      },
+      "productsLimit": 150,
+      "bonus": "2 mesi in regalo"
+    },
+    {
+      "id": 4,
+      "type": "showcase",
+      "subscription": {
+        "value": 399,
+        "type": "yearly"
+      },
+      "productsLimit": 150,
+      "bonus": "2 mesi in regalo"
+    },
+    {
+      "id": 5,
+      "type": "showcase",
+      "subscription": {
+        "value": 5,
+        "type": "monthly"
+      },
+      "productsLimit": 10,
+      "bonus": "7 giorni regalo"
+    },
+    {
+      "id": 6,
+      "type": "free",
+      "subscription": {
+        "value": 0,
+        "type": "monthly"
+      },
+      "productsLimit": 10,
+      "bonus": null
+    },
+    {
+      "id": 7,
+      "type": "showcase",
+      "subscription": {
+        "value": 5.99,
+        "type": "monthly"
+      },
+      "productsLimit": 10,
+      "bonus": "7 giorni regalo"
+    },
+    {
+      "id": 8,
+      "type": "shop",
+      "subscription": {
+        "value": 7.99,
+        "type": "monthly"
+      },
+      "productsLimit": 10,
+      "bonus": "7 giorni regalo"
+    }
   ]
 }
