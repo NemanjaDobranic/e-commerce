@@ -17,6 +17,8 @@ import useApi from '../../../hooks/useApi';
 import {orders} from '../../../services/vetrinaLive';
 import Button from '../../../components/Button';
 import FeatherIcon from 'react-native-vector-icons/Feather';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {OrdersParamList} from '../../../navigation/VetrinaLive/OrdersRoot/OrdersRoot';
 
 interface OrdersTable {
   tableHead: Array<string | JSX.Element>;
@@ -105,7 +107,9 @@ const Sort = () => (
   </View>
 );
 
-const Bulk = () => {
+const Bulk = ({
+  navigation,
+}: NativeStackScreenProps<OrdersParamList, 'Bulk'>) => {
   const [checkAll, setCheckAll] = useState(false);
   const initialTable = {
     tableHead: [
@@ -168,6 +172,7 @@ const Bulk = () => {
           textColor={colors.grey[300]}
           textVariant={textVariants.button.large}
           borderRadius={0.625 * spacing.s}
+          onPress={() => navigation.navigate('OrderInfo')}
           icon={
             <FeatherIcon
               name="external-link"

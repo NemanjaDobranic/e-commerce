@@ -2,17 +2,18 @@ import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Dashboard from '../../screens/vetrinaLive/Dashboard';
 import Payment from '../../screens/vetrinaLive/Payment';
-import Bulk from '../../screens/vetrinaLive/orders/Bulk';
+
 import Subsription from '../../screens/vetrinaLive/Subsription';
 import SideMenu from '../../components/SideMenu';
 import DrawerHeader from '../../components/DrawerHeader';
 import {NavigatorScreenParams} from '@react-navigation/native';
 import {ProductsRoot, ProductsParamList} from './ProductsRoot/ProductsRoot';
+import {OrdersRoot, OrdersParamList} from './OrdersRoot/OrdersRoot';
 
 export type VetrinaLiveList = {
   Dashboard: undefined;
   Products: NavigatorScreenParams<ProductsParamList>;
-  Orders: undefined;
+  Orders: NavigatorScreenParams<OrdersParamList>;
   Subsription: undefined;
   Payment: undefined;
 };
@@ -27,7 +28,7 @@ export default function VetrinaLiveRoot() {
       <Drawer.Screen name="Dashboard" component={Dashboard} />
       <Drawer.Screen name="Products" component={ProductsRoot} />
       <Drawer.Screen name="Payment" component={Payment} />
-      <Drawer.Screen name="Orders" component={Bulk} />
+      <Drawer.Screen name="Orders" component={OrdersRoot} />
       <Drawer.Screen name="Subsription" component={Subsription} />
     </Drawer.Navigator>
   );
