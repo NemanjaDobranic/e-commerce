@@ -27,6 +27,12 @@ const button = StyleSheet.create({
     lineHeight: 20,
     textAlign: 'center',
   },
+  giant: {
+    fontFamily: 'SourceSansPro-Regular',
+    fontSize: 18,
+    lineHeight: 24,
+    textAlign: 'center',
+  },
 });
 
 const paragraph = StyleSheet.create({
@@ -34,6 +40,11 @@ const paragraph = StyleSheet.create({
     fontFamily: 'SourceSansPro-Regular',
     fontSize: 13,
     lineHeight: 16,
+  },
+  small: {
+    fontFamily: 'SourceSansPro-Regular',
+    fontSize: 16,
+    lineHeight: 22,
   },
   medium: {
     fontFamily: 'SourceSansPro-Regular',
