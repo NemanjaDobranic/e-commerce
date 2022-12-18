@@ -52,3 +52,18 @@ export const orders = () => {
     },
   };
 };
+
+export type SubscriptionType = 'monthly' | 'yearly';
+
+export const plans = (subscriptionPlan: SubscriptionType) => {
+  return {
+    path: `/plans?subscription.type=${subscriptionPlan}`,
+    options: {
+      method: GET,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    },
+  };
+};
