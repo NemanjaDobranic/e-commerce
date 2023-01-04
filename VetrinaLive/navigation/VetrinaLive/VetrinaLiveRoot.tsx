@@ -4,8 +4,8 @@ import Dashboard from '../../screens/vetrinaLive/Dashboard';
 import Payment from '../../screens/vetrinaLive/Payment';
 
 import Subsription from '../../screens/vetrinaLive/Subsription';
-import SideMenu from '../../components/SideMenu';
-import DrawerHeader from '../../components/DrawerHeader';
+import NavigationDrawer from '../../components/NavigationDrawer';
+import NavigationHeader from '../../components/NavigationHeader';
 import {NavigatorScreenParams} from '@react-navigation/native';
 import {ProductsRoot, ProductsParamList} from './ProductsRoot/ProductsRoot';
 import {OrdersRoot, OrdersParamList} from './OrdersRoot/OrdersRoot';
@@ -23,8 +23,8 @@ const Drawer = createDrawerNavigator<VetrinaLiveList>();
 export default function VetrinaLiveRoot() {
   return (
     <Drawer.Navigator
-      drawerContent={props => <SideMenu {...props} />}
-      screenOptions={{header: props => <DrawerHeader {...props} />}}>
+      drawerContent={props => <NavigationDrawer {...props} />}
+      screenOptions={{header: props => <NavigationHeader {...props} />}}>
       <Drawer.Screen name="Dashboard" component={Dashboard} />
       <Drawer.Screen name="Products" component={ProductsRoot} />
       <Drawer.Screen name="Payment" component={Payment} />

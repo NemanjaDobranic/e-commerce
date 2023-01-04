@@ -84,7 +84,7 @@ const headerToolbar = [
   },
 ];
 
-const DrawerHeader: React.FC<DrawerHeaderProps> = ({navigation, route}) => {
+const NavigationDrawer: React.FC<DrawerHeaderProps> = ({navigation, route}) => {
   const getActions = (routeName: string) =>
     headerToolbar.find(element => element.routeName === routeName)?.actions ??
     [];
@@ -108,4 +108,4 @@ const DrawerHeader: React.FC<DrawerHeaderProps> = ({navigation, route}) => {
   );
 };
 
-export default DrawerHeader;
+export default NavigationDrawer;

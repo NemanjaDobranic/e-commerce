@@ -31,14 +31,17 @@ const icons = [
   },
 ];
 
-const SideMenu: React.FC<DrawerContentComponentProps> = props => {
+const NavigationDrawer: React.FC<DrawerContentComponentProps> = props => {
   const {state, navigation} = props;
   const [focused, setFocused] = useState(state.routes[0].name);
   const {signOut} = useAuth();
   const getIcon = (routeName: string) =>
     icons.find(icon => icon.routeName === routeName)?.icon ?? 'device-unknown';
   return (
-    <DrawerContentScrollView {...props} style={styles.root}>
+    <DrawerContentScrollView
+      {...props}
+      style={styles.root}
+      contentContainerStyle={styles.contentContainer}>
       <Logo style={styles.logo} />
       {state.routes.map(route => (
         <DrawerItem
@@ -64,6 +67,7 @@ const SideMenu: React.FC<DrawerContentComponentProps> = props => {
         onPress={() => signOut()}
         inactiveTintColor={colors.white}
         pressColor={colors.white}
+        style={styles.logout}
         icon={iconProps => <Icon name="logout" {...iconProps} />}
       />
     </DrawerContentScrollView>
@@ -74,11 +78,14 @@ type Style = {
   root: ViewStyle;
   labelStyle: TextStyle;
   logo: ViewStyle;
+  contentContainer: ViewStyle;
+  logout: ViewStyle;
 };
 
 const styles = StyleSheet.create<Style>({
   root: {
     backgroundColor: colors.primary.black,
+    flex: 1,
   },
   labelStyle: {...textVariants.title.title4},
   logo: {
@@ -86,6 +93,11 @@ const styles = StyleSheet.create<Style>({
     marginRight: 'auto',
     marginVertical: spacing.l,
   },
+  contentContainer: {height: '100%'},
+  logout: {
+    marginTop: 'auto',
+    marginBottom: spacing.s,
+  },
 });
 
-export default SideMenu;
+export default NavigationDrawer;
