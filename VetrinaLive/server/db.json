@@ -28,21 +28,21 @@
       "section": "e-commerce tips",
       "title": "13 tips on How to Write a Business Plan with success",
       "duration": 300,
-      "image": "http://192.168.1.4:3000/assets/images/graph.png"
+      "image": "http://192.168.1.6:3000/assets/images/graph.png"
     },
     {
       "id": 2,
       "section": "e-commerce tips",
       "title": "10 profitable things to make and sell online for 100 euros",
       "duration": 300,
-      "image": "http://192.168.1.4:3000/assets/images/camera.png"
+      "image": "http://192.168.1.6:3000/assets/images/camera.png"
     },
     {
       "id": 3,
       "section": "e-commerce tips",
       "title": "10 profitable things to make and sell online for 100 euros",
       "duration": 300,
-      "image": "http://192.168.1.4:3000/assets/images/graph.png"
+      "image": "http://192.168.1.6:3000/assets/images/graph.png"
     }
   ],
   "products": [
@@ -50,86 +50,86 @@
       "id": 1,
       "name": "Jaded Shirt",
       "price": 30,
-      "image": "http://192.168.1.4:3000/assets/images/bike.jpg"
+      "image": "http://192.168.1.6:3000/assets/images/bike.jpg"
     },
     {
       "id": 2,
       "name": "Pop Shirt",
       "price": 40,
-      "image": "http://192.168.1.4:3000/assets/images/earth.jpg"
+      "image": "http://192.168.1.6:3000/assets/images/earth.jpg"
     },
     {
       "id": 3,
       "name": "Strap T",
       "price": 80,
-      "image": "http://192.168.1.4:3000/assets/images/whales.jpg"
+      "image": "http://192.168.1.6:3000/assets/images/whales.jpg"
     },
     {
       "id": 4,
       "name": "Tiva",
       "price": 35,
-      "image": "http://192.168.1.4:3000/assets/images/earth.jpg"
+      "image": "http://192.168.1.6:3000/assets/images/earth.jpg"
     },
     {
       "id": 5,
       "name": "Swag T",
       "price": 60,
-      "image": "http://192.168.1.4:3000/assets/images/bike.jpg"
+      "image": "http://192.168.1.6:3000/assets/images/bike.jpg"
     },
     {
       "id": 6,
       "name": "Slay Shirt",
       "price": 50,
-      "image": "http://192.168.1.4:3000/assets/images/whales.jpg"
+      "image": "http://192.168.1.6:3000/assets/images/whales.jpg"
     },
     {
       "id": 7,
       "name": "Deem Shirt",
       "price": 70,
-      "image": "http://192.168.1.4:3000/assets/images/earth.jpg"
+      "image": "http://192.168.1.6:3000/assets/images/earth.jpg"
     }
   ],
   "payments": [
     {
       "id": 1,
       "name": "Cash",
-      "image": "http://192.168.1.4:3000/assets/images/offline.jpg",
+      "image": "http://192.168.1.6:3000/assets/images/offline.jpg",
       "enabled": "true"
     },
     {
       "id": 2,
       "name": "Wire Transfer",
-      "image": "http://192.168.1.4:3000/assets/images/wiretransfer.jpg",
+      "image": "http://192.168.1.6:3000/assets/images/wiretransfer.jpg",
       "enabled": "false"
     },
     {
       "id": 3,
       "name": "Stripe",
-      "image": "http://192.168.1.4:3000/assets/images/logos_stripe.jpg",
+      "image": "http://192.168.1.6:3000/assets/images/logos_stripe.jpg",
       "enabled": "false"
     },
     {
       "id": 4,
       "name": "Paypall",
-      "image": "http://192.168.1.4:3000/assets/images/paypall.jpg",
+      "image": "http://192.168.1.6:3000/assets/images/paypall.jpg",
       "enabled": "false"
     },
     {
       "id": 5,
       "name": "Razoplay",
-      "image": "http://192.168.1.4:3000/assets/images/razoplay.jpg",
+      "image": "http://192.168.1.6:3000/assets/images/razoplay.jpg",
       "enabled": "false"
     },
     {
       "id": 6,
       "name": "AliPay",
-      "image": "http://192.168.1.4:3000/assets/images/alipay.jpg",
+      "image": "http://192.168.1.6:3000/assets/images/alipay.jpg",
       "enabled": ""
     },
     {
       "id": 7,
       "name": "Paystack",
-      "image": "http://192.168.1.4:3000/assets/images/paystack.jpg",
+      "image": "http://192.168.1.6:3000/assets/images/paystack.jpg",
       "enabled": ""
     }
   ],
