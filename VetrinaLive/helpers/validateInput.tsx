@@ -2,7 +2,7 @@ import validator from 'validator';
 
 function validateInput(
   text: string,
-  type: 'name' | 'password' | 'emailAddress',
+  type: 'name' | 'password' | 'emailAddress' | 'telephoneNumber' | 'none',
 ): string {
   if (validator.isEmpty(text)) {
     return 'This field is required!';

@@ -18,10 +18,12 @@ interface Props {
   style?: ViewStyle | TextStyle | ImageStyle;
   placeholder?: string;
   value?: string;
-  type: 'name' | 'password' | 'emailAddress';
+  type: 'name' | 'password' | 'emailAddress' | 'telephoneNumber' | 'none';
   onChange?: (e: NativeSyntheticEvent<TextInputChangeEventData>) => void;
   isValid?: (isValid: boolean) => void;
   dirty?: boolean;
+  icon?: React.ReactNode;
+  disabled?: boolean;
 }
 
 const Input: React.FC<Props> = ({
@@ -32,9 +34,15 @@ const Input: React.FC<Props> = ({
   onChange,
   isValid,
   dirty,
+  icon,
+  disabled,
 }) => {
-  const {input, onBlur, onFocus, errorLabel} = styles(style);
-  const [inputStyle, setInputStyle] = useState(input);
+  const {textInputWrapper, textInput, onBlur, onFocus, errorLabel} = styles(
+    style,
+    icon,
+    disabled,
+  );
+  const [inputStyle, setInputStyle] = useState(textInput);
   const [error, setError] = useState<string>('');
   const [touched, setTouched] = useState<boolean>(!!dirty);
 
@@ -60,33 +68,65 @@ const Input: React.FC<Props> = ({
   ) => onChange && onChange(e);
   return (
     <View>
-      <TextInput
-        style={inputStyle}
-        textContentType={type}
-        secureTextEntry={type === 'password'}
-        value={value}
-        placeholder={placeholder}
-        onFocus={handleOnFocus}
-        onBlur={handleOnBlur}
-        onChange={handleTextChange}
-      />
+      <View style={textInputWrapper}>
+        {icon && <View>{icon}</View>}
+        <TextInput
+          style={inputStyle}
+          textContentType={type}
+          secureTextEntry={type === 'password'}
+          value={value}
+          placeholder={placeholder}
+          onFocus={handleOnFocus}
+          onBlur={handleOnBlur}
+          onChange={handleTextChange}
+          editable={!disabled}
+        />
+      </View>
       {error && <Text style={errorLabel}>{error}</Text>}
     </View>
   );
 };
 
-const styles = (style?: ViewStyle | TextStyle | ImageStyle) =>
+const styles = (
+  style?: ViewStyle | TextStyle | ImageStyle,
+  icon?: React.ReactNode,
+  disabled?: boolean,
+) =>
   StyleSheet.create({
-    input: {
-      borderWidth: spacing.s / 8,
-      borderColor: '#0a254052',
-      color: '#0a254052',
-      borderRadius: 0.75 * spacing.s,
-      paddingVertical: spacing.m,
-      paddingLeft: 1.25 * spacing.m,
+    textInputWrapper: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      ...(icon && {
+        borderWidth: spacing.s / 8,
+        borderColor: '#0a254052',
+        color: '#0a254052',
+        borderRadius: 0.75 * spacing.s,
+        paddingVertical: spacing.m,
+        paddingHorizontal: 1.25 * spacing.m,
+        ...style,
+      }),
+      ...(disabled && {
+        backgroundColor: colors.grey[300],
+        color: colors.grey[300],
+        opacity: 0.5,
+      }),
+    },
+    textInput: {
+      flexGrow: 1,
+      flexShrink: 0,
       fontSize: 0.875 * spacing.m,
       lineHeight: 1.125 * spacing.m,
-      ...style,
+      ...(!icon
+        ? {
+            borderWidth: spacing.s / 8,
+            borderColor: '#0a254052',
+            color: '#0a254052',
+            borderRadius: 0.75 * spacing.s,
+            paddingVertical: spacing.m,
+            paddingHorizontal: 1.25 * spacing.m,
+            ...style,
+          }
+        : {paddingHorizontal: 1.25 * spacing.s}),
     },
     onFocus: {
       borderColor: colors.primary.default,
@@ -99,6 +139,7 @@ const styles = (style?: ViewStyle | TextStyle | ImageStyle) =>
       color: colors.strawberry,
       marginTop: -spacing.s,
       marginBottom: 1.5 * spacing.s,
+      marginLeft: spacing.s / 2,
     },
   });
 
