@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   input: {
     marginBottom: spacing.l,
     paddingHorizontal: 1.25 * spacing.s,
-    paddingVertical: 1.25 * spacing.s,
+    paddingVertical: 0,
   },
   richTextToolbarStyle: {
     backgroundColor: colors.white,
@@ -194,7 +194,7 @@ const NewProduct = ({
           type="name"
           placeholder="Lorem ipsum"
           value=""
-          style={styles.input}
+          style={{...styles.input, paddingVertical: 1.25 * spacing.s}}
         />
         <Text style={styles.label}>Description</Text>
         <View style={styles.editorContainer}>
@@ -268,14 +268,12 @@ const NewProduct = ({
       </Card>
       <Card style={styles.cardContainer}>
         <Text style={styles.header}>Price</Text>
+
         <Text style={styles.label}>Original price</Text>
-        <Button
-          borderColor={colors.grey[300]}
-          borderRadius={0.625 * spacing.s}
-          textVariant={textVariants.input.input}
-          textColor={colors.primary.black}
-          gap={1.225 * spacing.s}
-          style={styles.inputIcon}
+        <Input
+          type="none"
+          value="0"
+          style={styles.input}
           icon={
             <MaterialIcon
               name="euro-symbol"
@@ -283,17 +281,14 @@ const NewProduct = ({
               color={colors.primary.black}
               style={styles.currency}
             />
-          }>
-          0
-        </Button>
+          }
+        />
+
         <Text style={styles.label}>Discounted price</Text>
-        <Button
-          borderColor={colors.grey[300]}
-          borderRadius={0.625 * spacing.s}
-          textVariant={textVariants.input.input}
-          textColor={colors.grey[300]}
-          gap={1.225 * spacing.s}
-          style={{...styles.inputIcon, backgroundColor: colors.grey[100]}}
+        <Input
+          type="none"
+          value="Lorem ipsum"
+          style={styles.input}
           icon={
             <MaterialIcon
               name="euro-symbol"
@@ -301,9 +296,10 @@ const NewProduct = ({
               color={colors.grey[300]}
               style={{...styles.currency, borderColor: colors.grey[300]}}
             />
-          }>
-          Lorem ipsum
-        </Button>
+          }
+          disabled
+        />
+
         <View style={styles.priceCheckbox}>
           <Checkbox
             tintColors={{true: colors.primary.black, false: colors.grey[200]}}
@@ -346,36 +342,32 @@ const NewProduct = ({
           type="name"
           placeholder="Leave empty to automatically generate"
           value=""
-          style={styles.input}
+          style={{...styles.input, paddingVertical: 1.25 * spacing.s}}
         />
+
         <Text style={styles.label}>Weight</Text>
-        <Button
-          borderColor={colors.grey[300]}
-          borderRadius={0.625 * spacing.s}
-          textVariant={textVariants.input.input}
-          textColor={colors.primary.black}
-          gap={1.225 * spacing.s}
-          style={styles.inputIcon}
-          icon={<Weight height={spacing.l} />}>
-          0 g
-        </Button>
+
+        <Input
+          type="none"
+          value="0 g"
+          style={styles.input}
+          icon={<Weight height={spacing.l} />}
+        />
+
         <Text style={styles.label}>Availability</Text>
-        <Button
-          borderColor={colors.grey[300]}
-          borderRadius={0.625 * spacing.s}
-          textVariant={textVariants.input.input}
-          textColor={colors.primary.black}
-          gap={1.225 * spacing.s}
-          style={styles.inputIcon}
+        <Input
+          type="none"
+          value="0"
+          style={styles.input}
           icon={
             <FeatherIcon
               name="box"
               size={spacing.l}
               color={colors.primary.black}
             />
-          }>
-          0
-        </Button>
+          }
+        />
+
         <View style={styles.priceCheckbox}>
           <Checkbox
             tintColors={{true: colors.primary.black, false: colors.grey[200]}}
