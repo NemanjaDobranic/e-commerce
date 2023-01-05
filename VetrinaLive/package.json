@@ -59,7 +59,7 @@
     "eslint": "^7.32.0",
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "0.72.3",
-    "react-test-renderer": "18.1.0",
+    "react-test-renderer": "^18.1.0",
     "typescript": "^4.8.3"
   },
   "jest": {
@@ -71,6 +71,9 @@
       "jsx",
       "json",
       "node"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!((jest-)?react-native(-.*)?|@react-native(-community)?)/)"
     ]
   }
 }
