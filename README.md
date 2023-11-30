@@ -8,7 +8,10 @@ Welcome to VetrinaLive, an E-Commerce solution for shop owners, built with React
 
 - **Effortless Setup:** You just need to sign up and follow the wizard to create online stores without technical expertise.
 
-![Signup](./snapshots/signup.png) ![Login](./snapshots/login.png)
+<p align="center">
+    <img src="./snapshots/signup.png" width="22%" />
+    <img src="./snapshots/login.png" width="22%" />
+</p>
 
 - **Intuitive Dashboard:** The dashboard is designed to make the shopping experience a pleasure and maximaze the exposure of your products.
 
@@ -20,15 +23,26 @@ Welcome to VetrinaLive, an E-Commerce solution for shop owners, built with React
 </p>
 
 - **Product Management:** Easily add and manage products.
-  ![New Product 1](./snapshots/newproduct-1.png) ![New Product 2](./snapshots/newproduct-2.png) ![New Product 3](./snapshots/newproduct-3.png)
+
+<p align="center">
+    <img src="./snapshots/newproduct-1.png" width="22%" />
+    <img src="./snapshots/newproduct-2.png" width="22%" />
+    <img src="./snapshots/newproduct-3.png" width="22%" />
+</p>
 
 - **Order Management:** Efficient features for order handling.
 
-![Order](./snapshots/orders.png)
+<p align="center">
+    <img src="./snapshots/orders.png" width="22%" />
+</p>
 
 - **Payment and Subscription Methods:** Supports various transaction methods: debit cards (with Stripe), PayPal, or wire transfer and subscription models.
 
-![Payment 1](./snapshots/payment-1.png) ![Payment 2](./snapshots/payment-2.png) ![Subscription](./snapshots/subscription.png)
+<p align="center">
+    <img src="./snapshots/payment-1.png" width="22%" />
+    <img src="./snapshots/payment-2.png" width="22%" />
+    <img src="./snapshots/subscription.png" width="22%" />
+</p>
 
 ## Getting Started
 
